@@ -125,23 +125,17 @@ const Home = () => {
               <p className='text-(--color-bg-dark-500) text-xl'>Reservations</p>
           </div>
           
-          <ul className='flex flex-wrap gap-2 h-[60vh] overflow-y-auto mt-4 '>
+          <ul className='flex flex-wrap gap-2 h-[60vh] overflow-y-auto mt-4 no-scrollbar '>
             {places.map((place, index) => 
-              <li key={index}>
+              <li 
+                className=''
+                key={index}>
                 <img className='h-[300px] w-auto' src={place.img} alt="" />
               </li>
             )}
           </ul>
         </div>
       </div>
-
-      <div className='h-[30vh] bg-(--color-white-500)'>
-        <div className='bg-amber-900 w-full max-w-5xl m-auto h-[20px]'>
-
-        </div>
-
-      </div>
-
     </>
   )
 }
