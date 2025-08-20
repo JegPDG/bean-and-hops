@@ -27,6 +27,16 @@
     scrollbar-width: none; /* Firefox */
   }
 
+  .scrollbar-style::-webkit-scrollbar{
+    scrollbar-color: rgb(60, 59, 59) rgb(25, 25, 24);
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-style {
+    scrollbar-color: rgb(60, 59, 59) rgb(25, 25, 24);
+    scrollbar-width: thin;
+  }
+
 }
 
 @theme {
