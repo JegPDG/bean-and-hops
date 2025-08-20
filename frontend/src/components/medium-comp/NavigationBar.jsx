@@ -33,7 +33,7 @@ const NavigationBar = () => {
       <div className='bg-bg-dark-500 h-16 border-b-white border-b w-screen flex justify-center items-center'>
         <div className='flex w-full max-w-5xl items-center justify-between h-full'>
           <div className='flex items-center cursor-pointer'
-            onClick={navigate('/')}
+            onClick={ (e) => navigate('/')}
           >
             <img className='size-16' 
               src={assets.bean_and_hops_white} alt="" />
