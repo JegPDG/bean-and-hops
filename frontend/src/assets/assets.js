@@ -14,20 +14,34 @@ import place_4 from './place_4.jpg'
 import place_5 from './place_5.jpg'
 import place_6 from './place_6.jpg'
 
+import esspresso from './esspresso.jpg'
+import affogato from './affogato.jpg'
+import americano from './americano.jpg'
+import iced_matcha from './iced-matcha-latte.jpg'
+import fruit_tea from './fruit-tea.jpg'
+
 
 
 export const assets = {
   bean_and_hops_white,
   bean_and_hops_black,
   bah_bg_img,
+  
   sample_1,
   sample_2,
   sample_3,
   sample_4,
+
   place_1,
   place_2,
   place_3,
   place_4,
   place_5,
   place_6,
+
+  esspresso,
+  affogato,
+  americano,
+  iced_matcha,
+  fruit_tea,
 }
