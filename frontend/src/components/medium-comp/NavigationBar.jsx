@@ -10,6 +10,9 @@ const NavigationBar = () => {
       label: "Contact",
     },
     {
+      label: "Reviews",
+    },
+    {
       label: "Location",
     },
     {
@@ -32,7 +35,7 @@ const NavigationBar = () => {
           </div>
 
           <div>
-            <ul className='flex gap-[60px] text-xl'>
+            <ul className='flex gap-8 text-lg'>
               {links.map((link, index) => 
                 <li key={index}>
                   {link.label}
