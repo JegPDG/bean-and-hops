@@ -1,6 +1,7 @@
 import React from 'react'
 import NavigationBar from '../components/medium-comp/NavigationBar'
 import { Outlet } from 'react-router'
+import Footer from '../components/medium-comp/Footer'
 
 const MainLayout = () => {
   return (
@@ -10,6 +11,9 @@ const MainLayout = () => {
       </div>
       <div className='pt-16'>
         <Outlet />
+      </div>
+      <div>
+        <Footer></Footer>
       </div>
     </div>
   )
