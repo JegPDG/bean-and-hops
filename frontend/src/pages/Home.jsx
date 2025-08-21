@@ -4,6 +4,7 @@ import { Button } from '../components/small-comp/Button'
 import ImagePost from '../components/medium-comp/ImagePost'
 import VideoPost from '../components/medium-comp/VideoPost'
 import Posts from '../components/medium-comp/Posts'
+import { Link } from 'react-router'
 
 
 const Home = () => {
@@ -121,8 +122,13 @@ const Home = () => {
         <div className='w-full max-w-5xl m-auto mb-8 '>
           <div className='mt-4 pt-8 w-full m-auto flex items-baseline gap-4'>
               <p className='text-5xl font-bold text-(--color-bg-dark-500) mr-16'>Our Place</p>
-              <p className='text-(--color-bg-dark-500) text-xl '>Location</p>
-              <p className='text-(--color-bg-dark-500) text-xl'>Reservations</p>
+              <Link>
+                <p className='text-(--color-bg-dark-500) text-xl '>Location</p>
+              </Link>
+              <Link className='cursor pointer'>
+                <p className='text-(--color-bg-dark-500) text-xl'>Reservations</p>
+              </Link>
+       
           </div>
           
           <ul className='flex flex-wrap gap-2 h-[60vh] overflow-y-auto mt-4 no-scrollbar '>

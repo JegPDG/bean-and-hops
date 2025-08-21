@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import {ChevronLeftIcon} from '@heroicons/react/24/solid'
+import { use } from 'react';
 
 
-const MenuSideBar = () => {
-  const [openIndex, setOpenIndex] = useState(null)
+const MenuSideBar = ({ onMenuSelect, onSubtypeSelect }) => {
+  const [openIndex, setOpenIndex] = useState(null);
+  const [subType, setSubType] = useState(null);
 
   const toggleOpen = (index) => {
     setOpenIndex(openIndex === index ? null : index)
@@ -11,14 +13,14 @@ const MenuSideBar = () => {
 
   const menuElements = [
     {
-      text: "Coffee",
+      category: "Coffee",
       subTexts: [
         {kind: "Base Coffee", },
         {kind: "Frappes (Coffee-Based)", },
       ]
     },
     {
-      text: "Non-Coffee",
+      category: "Non-Coffee",
       subTexts: [
         {kind: "Frappes (Non-Cofee Based)", },
         {kind: "Smoothies | Shakes", },
@@ -29,12 +31,12 @@ const MenuSideBar = () => {
       ]
     },
     {
-      text: "Rolled Ice Cream",
+      category: "Rolled Ice Cream",
       subTexts: [
       ]
     },
     {
-      text: "Pastries",
+      category: "Pastries",
        subTexts: [
         {kind: "Croffles", },
         {kind: "Cinnamon Rolls", },
@@ -43,7 +45,7 @@ const MenuSideBar = () => {
       ]
     },
     {
-      text: "Cakes",
+     category: "Cakes",
       subTexts: [
         {kind: "Starters", },
         {kind: "Sandwich", },
@@ -52,20 +54,20 @@ const MenuSideBar = () => {
       ]
     },
     {
-      text: "All-day Favourites",
+      category: "All-day Favourites",
        subTexts: [
         {kind: "Cake-in-a-tub",},
         {kind: "Whole Cakes", },
       ]
     },
     {
-      text: "Lunch Plates",
+      category: "Lunch Plates",
       subTexts: [
         {kind: "Rice Meals",},
       ]
     },
     {
-      text: "Add-ons",
+      category: "Add-ons",
       subTexts: [
       ]
     },
@@ -82,9 +84,11 @@ const MenuSideBar = () => {
                 key={index}
               >
               <div className='flex w-full rounded-sm justify-between p-[2px] pr-2 items-center cursor-pointer hover:bg-white/10'
-                  onClick={ () => toggleOpen(index)}
+                  onClick={ () => {
+                    onMenuSelect(element.category)
+                    toggleOpen(index)}}
               >
-                <p className='pl-2 '>{element.text}</p>
+                <p className='pl-2 '>{element.category}</p>
                 {element.subTexts.length > 0 && 
                   <ChevronLeftIcon className={`h-5 ${
                     openIndex === index ? "rotate-[-90deg]" : ""
@@ -95,6 +99,7 @@ const MenuSideBar = () => {
                <ul>
                 {element?.subTexts.map((kind, i) => 
                   <li 
+                    onClick={ () => onSubtypeSelect(kind.kind)}
                     className='text-sm pl-8 cursor-pointer hover:bg-white/10 rounded-sm p-[2px]'
                     key={i}>
                     {kind.kind}
