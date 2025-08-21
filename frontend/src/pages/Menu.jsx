@@ -1,15 +1,89 @@
-import React from 'react'
+import React, { useState } from 'react'
 import MenuSideBar from '../components/medium-comp/MenuSideBar'
 import { assets } from '../assets/assets'
+import MenuItem from '../components/medium-comp/MenuItem'
 
 const Menu = () => {
+  const [selectedCategory, setSelectedCategory] = useState("Coffee")
+  const [selectedSubtype, setSelectedSubtype] = useState("Base Coffee")
 
+  const handleMenuSelect = (category) => {
+    setSelectedCategory(category);
+    console.log("selected category", category)
+  }
+
+  const handleSubtypeSelect = (subtype) => {
+    setSelectedSubtype(subtype)
+    console.log("selected subtype ", subtype)
+  }
+
+  const menuItems = [
+    {
+      type: "Drink",
+      category: "Coffee",
+      subtype: "Base Coffee",
+      itemName: "Esspresso",
+      image: assets.esspresso,
+      prices: [
+        { size: "Single shot", price: 151,},
+        {size: "Double shot", price: 44, },
+      ],
+      description: "Locally sourced from the bottom of my heart"
+    },
+    {
+      type: "Drink",
+      category: "Coffee",
+      subtype: "Base Coffee",
+      itemName: "Matcha Latte",
+      image: assets.iced_matcha,
+      prices: [
+        {
+          size: "Hot (8oz)",
+          price: 25,
+        },
+        {
+          size: "Hot (12oz)",
+          price: 50,
+        },
+        {
+          size: "Iced (16oz)",
+          price: 150,
+        },
+      ],
+      description: " "
+    },
+     {
+      type: "Drink",
+      category: "Coffee",
+      subtype: "Base Coffee",
+      itemName: "Matcha Latte",
+      image: assets.iced_matcha,
+      prices: [
+        {
+          size: "Hot (8oz)",
+          price: 41,
+        },
+        {
+          size: "Hot (12oz)",
+          price: 33,
+        },
+        {
+          size: "Iced (16oz)",
+          price: 399,
+        },
+      ],
+      description: " "
+    },
+  ]
 
   return (
     <div className='w-full'>
       <div className='w-full max-w-5xl m-auto flex flex-row'>
         <div>
-          <MenuSideBar></MenuSideBar>
+          <MenuSideBar
+            onMenuSelect={handleMenuSelect}
+            onSubtypeSelect={handleSubtypeSelect}
+          ></MenuSideBar>
         </div>
         <div className='w-full min-h-[100vh]'>
           <div className='w-full pt-4'>
@@ -18,90 +92,22 @@ const Menu = () => {
 
           <div className='w-full pl-4'>
             <p className='mt-4 pb-4 text-3xl'>Base Coffee</p>
-            <div className='grid grid-cols-2 gap-2 w-full'>
-              
-              <div className='aspect-square overflow-hidden border-2 bg-amber-300 rounded-2xl relative'>
-                <div className='absolute bg-bg-dark-500 rounded-br-2xl'>
-                  <p className='left-4 font-bold text-xl p-2 '>Esspresso</p>
-                </div>
-                
-                <img className='w-full h-full object-cover' src={assets.esspresso} alt="" />
-                
-                <div className='bg-gradient-to-t from-black to-black/0 w-full h-44 absolute bottom-0'></div>
-                
-                <div className='absolute bottom-0 pl-4 pb-2 w-full'>
-                  <p className='text-sm font-bold'>Price:</p>
-                  <div className='grid grid-cols-3 gap-2 w-full'>
-                    <div>
-                      <p className='text-md'>Single shot</p>
-                      <p className='text-2xl font-bold'>$54</p>
-                    </div>
 
-                    <div>
-                      <p className='text-md'>Double shot</p>
-                      <p className='text-2xl font-bold'>$54</p>
-                    </div>
-                  </div>
-                  <p className='text-xs pt-2'>Descriprion for the image bb gurl</p>
-                </div>
-              </div>
+            <ul className='grid grid-cols-2 gap-2 w-full'>
+              {menuItems.map((item, index) => 
+                <li key={index}>
+                  {/* name, image, prices, description */}
+                  <MenuItem
+                    name={item.itemName}
+                    image={item.image}
+                    prices={item.prices}
+                    description={item.description}
+                  >
+                  </MenuItem>
+                </li>
+              )}
+            </ul>
 
-              <div className='aspect-square overflow-hidden border-2 bg-amber-300 rounded-2xl relative'>
-                <div className='absolute bg-bg-dark-500 rounded-br-2xl'>
-                  <p className='left-4 font-bold text-xl p-2 '>Matcha Latte</p>
-                </div>
-                
-                <img className='w-full h-full object-cover' src={assets.iced_matcha} alt="" />
-                
-                <div className='bg-gradient-to-t from-black to-black/0 w-full h-44 absolute bottom-0'></div>
-                
-                <div className='absolute bottom-0 pl-4 pb-2 w-full'>
-                  <p className='text-sm font-bold'>Price:</p>
-                  <div className='grid grid-cols-3 gap-2 w-full'>
-                    <div>
-                      <p className='text-md'>Hot (8oz)</p>
-                      <p className='text-2xl font-bold'>$54</p>
-                    </div>
-
-                    <div>
-                      <p className='text-md'>Hot (12oz)</p>
-                      <p className='text-2xl font-bold'>$54</p>
-                    </div>
-
-                    <div>
-                      <p className='text-md'>Iced</p>
-                      <p className='text-2xl font-bold'>$54</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-              <div className='aspect-square overflow-hidden border-2 bg-amber-300 rounded-2xl relative'>
-                <div className='absolute bg-bg-dark-500 rounded-br-2xl'>
-                  <p className='left-4 font-bold text-xl p-2 '>Creamy Oyster Pizza</p>
-                </div>
-                
-                <img className='w-full h-full object-cover' src={assets.sample_2} alt="" />
-                
-                <div className='bg-gradient-to-t from-black to-black/0 w-full h-44 absolute bottom-0'></div>
-                
-                <div className='absolute bottom-0 pl-4 pb-2 w-full'>
-                  <p className='text-sm font-bold'>Price:</p>
-                  <div className='grid grid-cols-3 gap-2 w-full'>
-                    <div>
-                      <p className='text-md'></p>
-                      <p className='text-2xl font-bold'>$320</p>
-                    </div>
-                  </div>
-
-                  <p className='text-xs pt-2'>Fresh Oysters | Creamy white sauce | spices</p>
-
-                </div>
-              </div>
-
-
-            </div>
           </div>
         </div>
       </div>
