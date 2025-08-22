@@ -17,17 +17,17 @@ const NavigationBar = () => {
     },
      {
       label: "Location",
-      navigation: '/menu',
+      navigation: '/location',
 
     },
     {
       label: "Posts",
-      navigation: '/menu',
+      navigation: '/posts',
 
     },
     {
       label: "Reviews",
-      navigation: '/menu',
+      navigation: '/reviews',
 
     },
      {

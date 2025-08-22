@@ -4,10 +4,16 @@ import { Button } from '../components/small-comp/Button'
 import ImagePost from '../components/medium-comp/ImagePost'
 import VideoPost from '../components/medium-comp/VideoPost'
 import Posts from '../components/medium-comp/Posts'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 
 
 const Home = () => {
+  const navigate = useNavigate();
+  
+  const handleNavButt = (page) => {
+    navigate(`/${page}`)
+  } 
+
   const post = [
     {
       type: "image",
@@ -82,11 +88,15 @@ const Home = () => {
           </p>
 
           <div className='flex gap-[20px] mt-16'>
-            <Button>
+            <Button
+              onClick={ () => handleNavButt("menu")}
+            >
               Visit Menu
             </Button>
 
-            <Button>
+            <Button
+            onClick={ () => handleNavButt("contact")}
+            >
               Reservations
             </Button>
           </div>

@@ -17,6 +17,14 @@
     background-color: #121212;
   }
 
+  .limited-text {
+    overflow: hidden;
+    display: -webkit-box; /* Required for -webkit-line-clamp */
+    -webkit-box-orient: vertical; /* Required for -webkit-line-clamp */
+    -webkit-line-clamp: 3; /* Limits to 3 lines */
+    line-clamp: 3; /* Standard property for modern browsers */
+  }
+
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
