@@ -21,7 +21,6 @@ import iced_matcha from './iced-matcha-latte.jpg'
 import fruit_tea from './fruit-tea.jpg'
 
 
-
 export const assets = {
   bean_and_hops_white,
   bean_and_hops_black,

@@ -12,7 +12,7 @@ const NavigationBar = () => {
     },
     {
       label: "Contact",
-      navigation: '/menu',
+      navigation: '/contact',
 
     },
      {
