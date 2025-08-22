@@ -28,11 +28,11 @@ const Email = () => {
 
             <div className='w-full pt-2'>
               <p>Subject</p>
-              <input className='bg-bg-dark-400 p-2 rounded-lg w-full' type="text" placeholder='Name' />
+              <input className='bg-bg-dark-400 p-2 rounded-lg w-full' type="text" placeholder='Subject' />
             </div>
 
             <div className='w-full pt-2'>
-              <p>Subject</p>
+              <p>Message</p>
               <textarea className='bg-bg-dark-400 rounded-lg w-full min-h-[100px] max-h-[200px] overflow-y-auto' name="" id=""></textarea>
             </div>
 

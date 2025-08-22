@@ -32,7 +32,7 @@ const NavigationBar = () => {
     },
      {
       label: "About Us",
-      navigation: '/menu',
+      navigation: '/about-us',
 
     },
     
