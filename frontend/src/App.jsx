@@ -6,6 +6,7 @@ import MainLayout from './layout/MainLayout';
 import Home from './pages/Home';
 import Menu from './pages/Menu';
 import Contact from './pages/Contact';
+import AboutUs from './pages/AboutUs';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path='/' element={<Home></Home>}></Route>
             <Route path='/menu' element={<Menu></Menu>}></Route>
             <Route path='/contact' element={<Contact></Contact>}></Route>
+            <Route path='/about-us' element={<AboutUs></AboutUs>}></Route>
           
           </Route>
         </Routes>

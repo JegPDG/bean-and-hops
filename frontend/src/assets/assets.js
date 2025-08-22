@@ -20,6 +20,10 @@ import americano from './americano.jpg'
 import iced_matcha from './iced-matcha-latte.jpg'
 import fruit_tea from './fruit-tea.jpg'
 
+import about_us_1 from './about-us-1.png'
+import about_us_2 from './about-us-2.png'
+import about_us_3 from './about-us-3.png'
+
 
 export const assets = {
   bean_and_hops_white,
@@ -43,4 +47,8 @@ export const assets = {
   americano,
   iced_matcha,
   fruit_tea,
+
+  about_us_1,
+  about_us_2,
+  about_us_3,
 }
