@@ -10,7 +10,7 @@ const Footer = () => {
             <p className='text-xl font-bold text-(--color-bg-dark-500)'>BEAN &amp; HOPS</p>
             <p className='text-(--color-bg-dark-500) text-xs'>COFFEE AND ROASTERY</p>
             <p className='text-(--color-bg-dark-500) text-xs w-100 mt-2'>
-              Bean & Hops Coffee Roastery — Crafting artisan coffee with passion, one cup at a time.
+              Crafting artisan coffee with passion, one cup at a time.
             </p>
           </div>
 

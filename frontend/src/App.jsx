@@ -7,6 +7,9 @@ import Home from './pages/Home';
 import Menu from './pages/Menu';
 import Contact from './pages/Contact';
 import AboutUs from './pages/AboutUs';
+import Posts from './pages/Posts';
+import Location from './pages/Location';
+import Reviews from './pages/Reviews';
 
 
 function App() {
@@ -21,6 +24,9 @@ function App() {
             <Route path='/menu' element={<Menu></Menu>}></Route>
             <Route path='/contact' element={<Contact></Contact>}></Route>
             <Route path='/about-us' element={<AboutUs></AboutUs>}></Route>
+            <Route path='/posts' element={<Posts></Posts>}></Route>
+            <Route path='/location' element={<Location></Location>}></Route>
+            <Route path='/reviews' element={<Reviews></Reviews>}></Route>
           
           </Route>
         </Routes>

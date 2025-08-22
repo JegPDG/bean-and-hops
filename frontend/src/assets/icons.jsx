@@ -14,9 +14,22 @@ export const Facebook = (props) => (
   <svg 
     xmlns="http://www.w3.org/2000/svg" 
     viewBox="0 0 640 640"
+    
     {...props}
     >
       {/* <!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--> */}
       
     <path d="M160 96C124.7 96 96 124.7 96 160L96 480C96 515.3 124.7 544 160 544L258.2 544L258.2 398.2L205.4 398.2L205.4 320L258.2 320L258.2 286.3C258.2 199.2 297.6 158.8 383.2 158.8C399.4 158.8 427.4 162 438.9 165.2L438.9 236C432.9 235.4 422.4 235 409.3 235C367.3 235 351.1 250.9 351.1 292.2L351.1 320L434.7 320L420.3 398.2L351 398.2L351 544L480 544C515.3 544 544 515.3 544 480L544 160C544 124.7 515.3 96 480 96L160 96z"/></svg>
+)
+
+export const ArrowReply = (props) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 640 640"
+    {...props}
+    >
+      
+      {/* <!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--> */}
+    
+    <path d="M160 128C142.3 128 128 113.7 128 96C128 78.3 142.3 64 160 64L256 64C309 64 352 107 352 160L352 466.7L425.4 393.3C437.9 380.8 458.2 380.8 470.7 393.3C483.2 405.8 483.2 426.1 470.7 438.6L342.7 566.6C330.2 579.1 309.9 579.1 297.4 566.6L169.4 438.6C156.9 426.1 156.9 405.8 169.4 393.3C181.9 380.8 202.2 380.8 214.7 393.3L288 466.7L288 160C288 142.3 273.7 128 256 128L160 128z"/></svg>
 )
