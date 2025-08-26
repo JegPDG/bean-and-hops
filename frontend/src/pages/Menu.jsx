@@ -85,6 +85,7 @@ const Menu = () => {
             onSubtypeSelect={handleSubtypeSelect}
           ></MenuSideBar>
         </div>
+
         <div className='w-full min-h-[100vh]'>
           <div className='w-full pt-4'>
             <p className='text-5xl font-bold'>COFFEE</p>
@@ -107,9 +108,11 @@ const Menu = () => {
                 </li>
               )}
             </ul>
-
           </div>
+
         </div>
+
+      
       </div>
     </div>
   )
