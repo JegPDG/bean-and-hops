@@ -47,17 +47,17 @@ const MenuSideBar = ({ onMenuSelect, onSubtypeSelect }) => {
     {
      category: "Cakes",
       subTexts: [
-        {kind: "Starters", },
-        {kind: "Sandwich", },
-        {kind: "Pizza", },
-        {kind: "Pasta", },
+        {kind: "Cake-in-a-tub",},
+        {kind: "Whole Cakes", },
       ]
     },
     {
       category: "All-day Favourites",
        subTexts: [
-        {kind: "Cake-in-a-tub",},
-        {kind: "Whole Cakes", },
+        {kind: "Starters", },
+        {kind: "Sandwich", },
+        {kind: "Pizza", },
+        {kind: "Pasta", },
       ]
     },
     {
