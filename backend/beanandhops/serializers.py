@@ -42,6 +42,7 @@ class MenuItemSerializer(serializers.ModelSerializer):
   mnu_type = serializers.StringRelatedField()
   mnu_category = serializers.StringRelatedField()
   mnu_subtype = serializers.StringRelatedField()
+  mnu_image = serializers.ImageField(use_url=True)
 
   class Meta:
     model = MenuItem
