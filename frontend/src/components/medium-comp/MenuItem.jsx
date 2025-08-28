@@ -19,7 +19,7 @@ const MenuItem = ({name, image, prices, description}) => {
           {prices.map((price, index) => 
             <li key={index}>
               <div>
-                <p className='text-md'>{price.size}</p>
+                <p className='text-md'>{price.label}</p>
                 <p className='text-2xl font-bold'>${price.price}</p>
               </div>
             </li>
