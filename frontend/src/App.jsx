@@ -10,6 +10,8 @@ import AboutUs from './pages/AboutUs';
 import Posts from './pages/Posts';
 import Location from './pages/Location';
 import Reviews from './pages/Reviews';
+import MenuItemDetail from './pages/MenuItemDetail';
+import MenuItemsAll from './pages/MenuItemsAll';
 
 
 function App() {
@@ -21,7 +23,11 @@ function App() {
           {/* <Route path='/' element={<NavigationBar></NavigationBar>}></Route> */}
           <Route element={<MainLayout></MainLayout>}>
             <Route path='/' element={<Home></Home>}></Route>
-            <Route path='/menu' element={<Menu></Menu>}></Route>
+            <Route element={<Menu></Menu>}>
+              <Route path='/menu' element={<Menu></Menu>}></Route>
+              <Route path='/menu/items' element={<MenuItemsAll></MenuItemsAll>}></Route>
+              <Route path='/menu/item-detail' element={<MenuItemDetail></MenuItemDetail>}></Route>
+            </Route>
             <Route path='/contact' element={<Contact></Contact>}></Route>
             <Route path='/about-us' element={<AboutUs></AboutUs>}></Route>
             <Route path='/posts' element={<Posts></Posts>}></Route>
