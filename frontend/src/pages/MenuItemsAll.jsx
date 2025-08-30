@@ -1,11 +1,23 @@
-import React from 'react'
-import { useOutletContext } from 'react-router'
+import React, { useState } from 'react'
+import { useNavigate, useOutletContext } from 'react-router'
 import MenuItem from '../components/medium-comp/MenuItem'
 
 
 const MenuItemsAll = () => {
-  const { selectedcategory, category} = useOutletContext();
+  const { selectedcategory, category, itemName} = useOutletContext();
+  const [menuItemName, setMenuItemName] = useState(null);
+  const navigate = useNavigate();
+  
+  const handleNameSelect = (name) => {
+    setMenuItemName(name)
+    itemName(name)
+    console.log(name)
+  }
 
+  const goToMenuItemDetail = (itemname) => {
+    navigate(`/menu/item-detail/${itemname}`)
+    console.log(itemname)
+  }
 
   return (
     <div>
@@ -27,6 +39,8 @@ const MenuItemsAll = () => {
                           <li key={index}>
                             {/* name, image, prices, description */}
                             <MenuItem
+                              onNameSelect={handleNameSelect}
+                              
                               name={item.mnu_name}
                               image={item.mnu_image}
                               prices={item.mnu_prices}

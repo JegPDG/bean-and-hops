@@ -14,7 +14,7 @@ const Menu = () => {
   const getCategory = async(categ) => {
     const res = await api.get(`menuitem/grouped-category/${categ}/`)
     const data = res.data;
-    console.log(data)
+    // console.log(data)
     return data
   }
 
@@ -174,7 +174,7 @@ const Menu = () => {
         <div className='flex  flex-col'>
 
           <Outlet
-            context={{selectedCategory, category}}
+            context={{selectedCategory, category, selectedSubtype}}
           ></Outlet>
 
         </div>
