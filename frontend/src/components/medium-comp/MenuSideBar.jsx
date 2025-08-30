@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import {ChevronLeftIcon} from '@heroicons/react/24/solid'
 import { use } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import api from '../../services/api';
 
 
 const MenuSideBar = ({ onMenuSelect, onSubtypeSelect }) => {
@@ -10,6 +12,18 @@ const MenuSideBar = ({ onMenuSelect, onSubtypeSelect }) => {
   const toggleOpen = (index) => {
     setOpenIndex(openIndex === index ? null : index)
   }
+
+  const getSideBarElement = async() => {
+    const res = await api.get('category/')
+
+    return res.data
+  }
+
+  const {data: menuelements, isLoading, error} = useQuery({
+    queryKey: ['menuSidebar'],
+    queryFn: getSideBarElement,
+  })
+
 
   const menuElements = [
     {
@@ -79,17 +93,17 @@ const MenuSideBar = ({ onMenuSelect, onSubtypeSelect }) => {
       <div className='p-4'>
         <p className='text-lg font-bold'>Menu</p>
         <ul >
-          {menuElements?.map((element, index) => 
+          {menuelements?.map((element, index) => 
             <li 
                 key={index}
               >
               <div className='flex w-full rounded-sm justify-between p-[2px] pr-2 items-center cursor-pointer hover:bg-white/10'
                   onClick={ () => {
-                    onMenuSelect(element.category)
+                    onMenuSelect(element.name)
                     toggleOpen(index)}}
               >
-                <p className='pl-2 '>{element.category}</p>
-                {element.subTexts.length > 0 && 
+                <p className='pl-2 '>{element.name}</p>
+                {element.subtypes.length > 0 && 
                   <ChevronLeftIcon className={`h-5 ${
                     openIndex === index ? "rotate-[-90deg]" : ""
                   }`}></ChevronLeftIcon>
@@ -97,12 +111,12 @@ const MenuSideBar = ({ onMenuSelect, onSubtypeSelect }) => {
               </div>
               {openIndex === index && (
                <ul>
-                {element?.subTexts.map((kind, i) => 
+                {element?.subtypes.map((kind, i) => 
                   <li 
-                    onClick={ () => onSubtypeSelect(kind.kind)}
+                    onClick={ () => onSubtypeSelect(kind.name)}
                     className='text-sm pl-8 cursor-pointer hover:bg-white/10 rounded-sm p-[2px]'
                     key={i}>
-                    {kind.kind}
+                    {kind.name}
                   </li>
                 )}
                </ul>
