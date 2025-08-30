@@ -27,6 +27,8 @@ function App() {
               <Route path='/menu' element={<Menu></Menu>}></Route>
               <Route path='/menu/items' element={<MenuItemsAll></MenuItemsAll>}></Route>
               <Route path='/menu/item-detail' element={<MenuItemDetail></MenuItemDetail>}></Route>
+              <Route path='/menu/item-detail/:itemname' element={<MenuItemDetail></MenuItemDetail>}></Route>
+
             </Route>
             <Route path='/contact' element={<Contact></Contact>}></Route>
             <Route path='/about-us' element={<AboutUs></AboutUs>}></Route>

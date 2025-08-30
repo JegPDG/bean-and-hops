@@ -4,8 +4,8 @@ import { assets } from '../assets/assets';
 import Review from '../components/medium-comp/Review';
 
 const MenuItemDetail = () => {
-  const {selectedCategory, category} = useOutletContext();
-
+  const {selectedCategory, category, selectedSubtype, itemName} = useOutletContext();
+  // console.log(itemName)
 
 
 

@@ -1,9 +1,21 @@
 import React from 'react'
+import { useNavigate } from 'react-router'
 
-const MenuItem = ({name, image, prices, description}) => {
+const MenuItem = ({name, image, prices, description, onNameSelect}) => {
+  const navigate = useNavigate();
+  
+  const goToMenuItemDetail = (itemname) => {
+    navigate(`/menu/item-detail/${itemname}`)
+    console.log(itemname)
+  }
 
   return (
-    <div className='aspect-square overflow-hidden border-2 bg-amber-300 rounded-2xl relative'>
+    <div 
+      onClick={ () => {
+        goToMenuItemDetail(name)
+        onNameSelect(name)
+      }}
+    className='aspect-square overflow-hidden border-2 bg-amber-300 rounded-2xl relative'>
       <div className='absolute bg-bg-dark-500 rounded-br-2xl'>
         <p className='left-4 font-bold text-xl p-2 '>{name}</p>
       </div>
