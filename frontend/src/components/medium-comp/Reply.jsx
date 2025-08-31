@@ -18,7 +18,7 @@ const Reply = ({username, profilePic, text, dateTime}) => {
 
         {/* Reply*/}
         <div>
-          <div className='Anoto flex gap-4'>
+          <div className='Anoto flex gap-4 shrink-0'>
             {/* Profile picture */}
             <div className='size-8 aspect-square rounded-[50%] flex overflow-hidden'>
               <img className='w-full h-full object-cover border-none' src={profilePic} alt="" />

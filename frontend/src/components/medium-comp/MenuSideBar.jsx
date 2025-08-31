@@ -3,11 +3,13 @@ import {ChevronLeftIcon} from '@heroicons/react/24/solid'
 import { use } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import api from '../../services/api';
+import { useNavigate } from 'react-router';
 
 
 const MenuSideBar = ({ onMenuSelect, onSubtypeSelect }) => {
   const [openIndex, setOpenIndex] = useState(null);
   const [subType, setSubType] = useState(null);
+  const navigate = useNavigate()
 
   const toggleOpen = (index) => {
     setOpenIndex(openIndex === index ? null : index)
@@ -100,7 +102,10 @@ const MenuSideBar = ({ onMenuSelect, onSubtypeSelect }) => {
               <div className='flex w-full rounded-sm justify-between p-[2px] pr-2 items-center cursor-pointer hover:bg-white/10'
                   onClick={ () => {
                     onMenuSelect(element.name)
-                    toggleOpen(index)}}
+                    toggleOpen(index)
+                    navigate('menu/items')
+                    window.scrollTo(0, 0);
+                  }}
               >
                 <p className='pl-2 '>{element.name}</p>
                 {element.subtypes.length > 0 && 

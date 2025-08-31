@@ -18,6 +18,8 @@ class ReviewSerializers(serializers.ModelSerializer):
   rvw_replies = RepliesSerializer(many=True)
   rvw_icon = serializers.ImageField(use_url=True)
   rvw_image = serializers.ImageField(use_url=True)
+  rvw_item = serializers.CharField(source='rvw_item.mnu_name', read_only=True)
+  rvw_date= serializers.DateTimeField(format="%I:%M %p %B %d")
 
   class Meta:
     model = Reviews

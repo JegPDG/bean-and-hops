@@ -163,7 +163,7 @@ const Menu = () => {
 
   return (
     <div className='w-full'>
-      <div className='w-full max-w-5xl m-auto flex flex-row'>
+      <div className='w-full max-w-5xl m-auto flex flex-row min-h-screen pb-8'>
         <div>
           <MenuSideBar
             onMenuSelect={handleMenuSelect}

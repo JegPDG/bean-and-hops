@@ -10,19 +10,14 @@ const MenuItemsAll = () => {
   
   const handleNameSelect = (name) => {
     setMenuItemName(name)
-    itemName(name)
+    // itemName(name)
     console.log(name)
-  }
-
-  const goToMenuItemDetail = (itemname) => {
-    navigate(`/menu/item-detail/${itemname}`)
-    console.log(itemname)
   }
 
   return (
     <div>
       {category && (
-          <ul className='w-full min-h-[100vh] flex flex-col'>
+          <ul className='w-full min-h-[100vh] flex flex-col animate-[fadeInUp_0.6s_ease-out] '>
             {category.map((categ, index) => 
               <li key={index} className='w-full'>
                 <div className='w-full pt-4'>

@@ -14,7 +14,7 @@ const Review = ({profilePic, username, rate, itemReviewed, text, image, dateTime
 
       {/* Profile picture */}
       <div className='size-12 aspect-square rounded-[50%] bg-amber-50 flex overflow-hidden shrink-0'>
-        <img className='size-12 object-cover ' src={profilePic} alt="" />
+        <img className='size-12 object-cover shrink-0' src={profilePic} alt="" />
       </div>
 
       <div className='w-full '> 
@@ -81,9 +81,9 @@ const Review = ({profilePic, username, rate, itemReviewed, text, image, dateTime
                   {replies?.map((reply, index) =>
                     <li key={index}>
                       <Reply
-                        username={reply.username}
-                        profilePic={reply.profilepic}
-                        text={reply.text}
+                        username={reply.rply_name}
+                        profilePic={reply.rply_icon}
+                        text={reply.rply_text}
                       ></Reply>
                     </li>
                   )}

@@ -75,7 +75,7 @@ class MenuItem(models.Model):
 class Prices(models.Model):
   menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE, related_name='mnu_prices')
   label = models.CharField(max_length=50, null=True, blank=True)
-  price = models.DecimalField(max_digits=8, decimal_places=2, null=True)
+  price = models.DecimalField(max_digits=8, decimal_places=0, null=True)
 
   def __str__(self):
     return f"{self.menu_item.mnu_name} - {self.label}: {self.price}"
