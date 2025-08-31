@@ -3,7 +3,7 @@ import { assets } from '../assets/assets'
 
 const AboutUs = () => {
   return (
-    <div className='w-full'>
+    <div className='w-full animate-[fadeInUp_0.6s_ease-out]'>
       <div className='w-full max-w-2xl m-auto pb-16'>
         <div className='w-full flex items-center flex-col'>
           

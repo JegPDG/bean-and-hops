@@ -6,6 +6,7 @@ const MenuItem = ({name, image, prices, description, onNameSelect}) => {
   
   const goToMenuItemDetail = (itemname) => {
     navigate(`/menu/item-detail/${itemname}`)
+    window.scrollTo(0, 0);
     console.log(itemname)
   }
 
@@ -15,7 +16,7 @@ const MenuItem = ({name, image, prices, description, onNameSelect}) => {
         goToMenuItemDetail(name)
         onNameSelect(name)
       }}
-    className='aspect-square overflow-hidden border-2 bg-amber-300 rounded-2xl relative'>
+    className='aspect-square overflow-hidden border-2 bg-amber-300 rounded-2xl relative hover:scale-[1.01] cursor-pointer'>
       <div className='absolute bg-bg-dark-500 rounded-br-2xl'>
         <p className='left-4 font-bold text-xl p-2 '>{name}</p>
       </div>

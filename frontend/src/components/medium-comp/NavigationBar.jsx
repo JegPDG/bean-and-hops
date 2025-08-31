@@ -8,7 +8,7 @@ const NavigationBar = () => {
   const links = [
     {
       label: "Menu",
-      navigation: '/menu',
+      navigation: '/menu/items',
     },
     {
       label: "Contact",
