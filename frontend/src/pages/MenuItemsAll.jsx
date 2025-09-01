@@ -26,12 +26,12 @@ const MenuItemsAll = () => {
 
                 <ul className='w-full pl-4'>
                   {categ.Subtypes.map((subtype, index) => 
-                    <li key={index}>
+                    <li key={index} id={subtype.Subtype}>
                       <p className='mt-4 pb-4 text-3xl'>{subtype.Subtype}</p> 
                       
                       <ul className='grid grid-cols-2 gap-2 w-full'>
                         {subtype.Items.map((item, index) => 
-                          <li key={index}>
+                          <li key={index} >
                             {/* name, image, prices, description */}
                             <MenuItem
                               onNameSelect={handleNameSelect}

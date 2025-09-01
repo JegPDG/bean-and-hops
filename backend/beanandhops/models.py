@@ -14,6 +14,9 @@ def upload_to_profile(instance, filename):
 def upload_to_review(instance, filename):
   return f"review/{filename}"
 
+def upload_to_post(instance, filename):
+  return f"posts/{filename}"
+
 class Type(models.Model):
   name = models.CharField(max_length=100)
 
@@ -104,4 +107,16 @@ class Reply(models.Model):
 
   def __str__(self):
     return f"{self.rply_name}"
-    
+
+class Post(models.Model):
+
+
+  pst_id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4)
+  pst_image = models.ImageField(upload_to=upload_to_post)
+  pst_created_at = models.DateTimeField(auto_now_add=True)
+  pst_caption = models.TextField(max_length=1000)
+  pst_menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE, null=True, blank=True, related_name="pst_menu")
+
+  def __str__(self):
+    return f"{self.pst_id}"
+  

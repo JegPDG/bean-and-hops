@@ -1,9 +1,25 @@
 import React from 'react'
 import { assets } from '../assets/assets'
 import PostItem from '../components/medium-comp/PostItem'
+import { useQuery } from '@tanstack/react-query'
+import api from '../services/api'
 
 
 const Posts = () => {
+
+  const getPostItem = async() => {
+    const res = await api.get('post/')
+    // console.log(res)
+    return res.data
+  }
+
+  const {data: postItem, isLoading, error} = useQuery({
+    queryKey: ['post'],
+    queryFn: getPostItem,
+    keepPreviousData: true
+  })
+
+  console.log(postItem)
 
   const postitem = [
     {image: assets.americano, caption:"Espresso is a concentrated coffee beverage, popular in Italy and worldwide, made by forcing hot, pressurized water through finely ground coffee beans to extract intense flavor and aroma."},
@@ -29,13 +45,13 @@ const Posts = () => {
 
         {/* Posts */}
 
-        <ul className='w-full pt-8 grid grid-cols-3 gap-1'>
-          {postitem.map((post, index) => 
-            <li>
+        <ul className='w-full pt-8 grid grid-cols-3 gap-1 animate-[fadeInUp_0.5s_ease-out]'>
+          {postItem?.map((post, index) => 
+            <li key={index}>
               {/* image, caption */}
               <PostItem 
-                image={post.image}
-                caption={post.caption}
+                image={post.pst_image}
+                caption={post.pst_caption}
               ></PostItem>
             </li>
           )}

@@ -8,7 +8,7 @@ import { Outlet } from 'react-router'
 
 const Menu = () => {
   const [selectedCategory, setSelectedCategory] = useState("Coffee")
-  const [selectedSubtype, setSelectedSubtype] = useState("Base Coffee")
+  const [selectedSubtype, setSelectedSubtype] = useState(null)
   const [categ, setCateg] = useState(null)
 
   const getCategory = async(categ) => {
@@ -32,9 +32,14 @@ const Menu = () => {
     console.log("selected category", category)
   }
 
+
   const handleSubtypeSelect = (subtype) => {
     setSelectedSubtype(subtype)
     console.log("selected subtype ", subtype)
+    const el = document.getElementById(subtype);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
     // Handle loading state
