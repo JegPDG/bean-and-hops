@@ -5,6 +5,8 @@ import ImagePost from '../components/medium-comp/ImagePost'
 import VideoPost from '../components/medium-comp/VideoPost'
 import Posts from '../components/medium-comp/Posts'
 import { Link, useNavigate } from 'react-router'
+import { useQuery } from '@tanstack/react-query'
+import api from '../services/api'
 
 
 const Home = () => {
@@ -12,7 +14,23 @@ const Home = () => {
   
   const handleNavButt = (page) => {
     navigate(`/${page}`)
+    window.scrollTo(0, 0);
+
   } 
+
+  const getPosts = async() => {
+    const res = await api.get('post/')
+    return res.data
+  }
+
+  const {data: postItem, isLoading, error} = useQuery({
+    queryKey: ['post'],
+    queryFn: getPosts,
+    keepPreviousData: true
+    
+  })
+
+  console.log(postItem)
 
   const post = [
     {
@@ -61,7 +79,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="relative w-full min-h-screen overflow-hidden"
+      <div className="relative w-full min-h-screen overflow-hidden animate-[fadeInUp_0.5s_ease-out]"
           style={{height: "calc(100vh - 64px)"}}
         >
         {/* Blurred background */}
@@ -89,7 +107,7 @@ const Home = () => {
 
           <div className='flex gap-[20px] mt-16'>
             <Button
-              onClick={ () => handleNavButt("menu")}
+              onClick={ () => handleNavButt("menu/items")}
             >
               Visit Menu
             </Button>
@@ -111,15 +129,16 @@ const Home = () => {
 
           <div>
             <ul className="mt-[20px] flex gap-[20px] overflow-x-scroll scrollbar-style">
-              {post.map((imgpost, index) =>
+              {postItem?.map((imgpost, index) =>
                 <li
                 className='mb-[20px]'
                 key={index}>
                   <Posts
-                    type={imgpost.type}
-                    src={imgpost.src}
+                    type={'image'}
+                    src={imgpost.pst_image}
                     title={imgpost.title}
-                    caption={imgpost.caption}
+                    caption={imgpost.pst_caption}
+                    menuitem={imgpost.pst_menu_item}
                   ></Posts>
                 </li>
               )}
@@ -132,10 +151,10 @@ const Home = () => {
         <div className='w-full max-w-5xl m-auto mb-8 '>
           <div className='mt-4 pt-8 w-full m-auto flex items-baseline gap-4'>
               <p className='text-5xl font-bold text-(--color-bg-dark-500) mr-16'>Our Place</p>
-              <Link>
+              <Link to={'/location'} onClick={() =>  window.scrollTo(0, 0)}>
                 <p className='text-(--color-bg-dark-500) text-xl '>Location</p>
               </Link>
-              <Link className='cursor pointer'>
+              <Link to={'/contact'} onClick={() =>  window.scrollTo(0, 0)}>
                 <p className='text-(--color-bg-dark-500) text-xl'>Reservations</p>
               </Link>
        

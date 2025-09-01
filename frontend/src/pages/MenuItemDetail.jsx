@@ -23,7 +23,23 @@ const MenuItemDetail = () => {
 
   })
 
-  
+    // Handle loading state
+  if (isLoading) {
+    return (
+      <div className='w-full h-screen flex items-center justify-center'>
+        <p>Loading...</p>
+      </div>
+    )
+  }
+
+    // Handle error state
+  if (error) {
+    return (
+      <div className='w-full h-screen flex items-center justify-center'>
+        <p>Error: {error.message} {console.log(error.message)}</p>
+      </div>
+    )
+  }
 
 
 
@@ -39,7 +55,7 @@ const MenuItemDetail = () => {
                   <p className='text-5xl font-bold'>{item.mnu_category}</p>
               </div>
 
-              <div className='w-full flex justify-center'>
+              <div className='w-full flex justify-center pt-12'>
                 <p className='text-3xl'>{item.mnu_subtype}</p>
               </div>
 
@@ -70,7 +86,7 @@ const MenuItemDetail = () => {
 
                   </div>
                 </div>
-
+{/* 
                 <div className='mt-8 w-full'>
                   <p className='text-2xl font-bold'>Review</p>
                   <div className='w-full h-[1px] mt-2 bg-white'></div>
@@ -101,7 +117,7 @@ const MenuItemDetail = () => {
                     <p>Add Review</p>
                   </div>
 
-                </div>
+                </div> */}
 
 
               </div>

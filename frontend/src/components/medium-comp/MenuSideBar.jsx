@@ -27,6 +27,7 @@ const MenuSideBar = ({ onMenuSelect, onSubtypeSelect }) => {
   })
 
 
+
   const menuElements = [
     {
       category: "Coffee",

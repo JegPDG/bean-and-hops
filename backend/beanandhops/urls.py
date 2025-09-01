@@ -1,6 +1,6 @@
 from django.urls import path, include
 from . import views
-from .views import MenuItemAPIView, ReviewsAPIViewSet, SubtypeAPIView, CategoryAPIView
+from .views import MenuItemAPIView, ReviewsAPIViewSet, SubtypeAPIView, CategoryAPIView, PostAPIVIew
 from rest_framework.routers import DefaultRouter
 from django.conf.urls.static import static
 from django.conf import settings
@@ -8,7 +8,8 @@ from django.conf import settings
 urlpatterns = [
   path("chaining/", include("smart_selects.urls")),
   path('subtype/', SubtypeAPIView.as_view(), name='subtype'),
-  path('category/', CategoryAPIView.as_view(), name='category')
+  path('category/', CategoryAPIView.as_view(), name='category'),
+  path('post/', PostAPIVIew.as_view(), name='post')
 
 
 ]

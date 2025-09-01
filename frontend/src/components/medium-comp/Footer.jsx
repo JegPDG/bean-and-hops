@@ -1,5 +1,6 @@
 import React from 'react'
 import { assets } from '../../assets/assets'
+import { Link } from 'react-router'
 
 const Footer = () => {
   return (
@@ -16,15 +17,25 @@ const Footer = () => {
 
           <div className='grid grid-cols-3 gap-2 '>
             <div className='flex flex-col gap-2'>
-              <p className='text-(--color-bg-dark-500) text-md font-bold'>MENU</p>
-              <p className='text-(--color-bg-dark-500) text-md font-bold'>CONTACT</p>
-              <p className='text-(--color-bg-dark-500) text-md font-bold'>LOCATION</p>
+              <Link to={'/menu/items'} onClick={() =>  window.scrollTo(0, 0)}>
+                <p className='text-(--color-bg-dark-500) text-md font-bold'>MENU</p>
+              </Link>
+              <Link to={'/contact'} onClick={() =>  window.scrollTo(0, 0)}>
+                <p className='text-(--color-bg-dark-500) text-md font-bold'>CONTACT</p>
+              </Link>
+              <Link to={'/location'} onClick={() =>  window.scrollTo(0, 0)}>
+                <p className='text-(--color-bg-dark-500) text-md font-bold'>LOCATION</p>
+              </Link>
             </div>
 
             <div className='flex flex-col gap-2'>
-              <p className='text-(--color-bg-dark-500) text-md font-bold'>POSTS</p>
-              <p className='text-(--color-bg-dark-500) text-md font-bold'>REVIEWS</p>
-              <p className='text-(--color-bg-dark-500) text-md font-bold'>ABOUT US</p>
+              <Link to={'/posts'} onClick={() =>  window.scrollTo(0, 0)}>
+                <p className='text-(--color-bg-dark-500) text-md font-bold'>POSTS</p>
+              </Link>
+              {/* <p className='text-(--color-bg-dark-500) text-md font-bold'>REVIEWS</p> */}
+              <Link to={'/about-us'} onClick={() =>  window.scrollTo(0, 0)}>
+                <p className='text-(--color-bg-dark-500) text-md font-bold'>ABOUT US</p>
+              </Link>
             </div>
 
               <div className='flex flex-col gap-2'>

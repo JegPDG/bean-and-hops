@@ -1,12 +1,25 @@
 import React from 'react'
+import { useNavigate } from 'react-router'
 
-const Posts = ({ type, src, title, caption }) => {
+const Posts = ({ type, src, title, caption, menuitem }) => {
   // This is a Post that accepts videos or images
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (menuitem){
+      navigate(`/menu/item-detail/${menuitem}`)
+      window.scrollTo(0, 0);
+    }
+  }
+
+
+
   return (
     <div
       className={`relative border rounded-2xl overflow-hidden shrink-[0] ${
         type === "video" ? "w-[225px] h-[400px]" : "w-[400px] h-[400px]" 
       }`}
+      onClick={handleClick}
     >
       {type === "image" ? (
         <img src={src} alt={title} className="w-full h-full object-cover" />

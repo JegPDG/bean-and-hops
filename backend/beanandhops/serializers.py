@@ -1,4 +1,4 @@
-from .models import MenuItem, Prices, Reviews, Reply, Subtype, Category
+from .models import MenuItem, Prices, Reviews, Reply, Subtype, Category, Post
 from rest_framework import serializers
 
 class RepliesSerializer(serializers.ModelSerializer):
@@ -102,3 +102,17 @@ class CategorySerializer(serializers.ModelSerializer):
         'name',
         'subtypes',
       ]
+
+class PostSerializer(serializers.ModelSerializer):
+  pst_image = serializers.ImageField(use_url = True)
+  pst_menu_item = serializers.CharField(source='pst_menu_item.mnu_name', read_only=True)
+
+  class Meta:
+    model = Post
+    fields = [
+      'pst_id',
+      'pst_image',
+      'pst_created_at',
+      'pst_caption',
+      'pst_menu_item'
+    ]

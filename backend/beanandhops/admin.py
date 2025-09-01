@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import MenuItem, Reviews, Reply, Prices, Category, Type, Subtype
+from .models import MenuItem, Reviews, Reply, Prices, Category, Type, Subtype, Post
 
 # Tabular inlines
 class PricesTabularInline(admin.TabularInline):
@@ -21,6 +21,14 @@ class ReplyTabularInline(admin.TabularInline):
   extra = 0
 
 # Register your models here.
+
+class PostAdmin(admin.ModelAdmin):
+  list_display = ['pst_id','pst_image','pst_created_at', 'pst_caption',]
+  search_fields =['pst_id', 'pst_caption']
+
+  def has_delete_permission(self, request, obj = None):
+    return True
+
 
 
 class TypeAdmin(admin.ModelAdmin):
@@ -100,6 +108,8 @@ admin.site.register(Subtype, SubTypeAdmin)
 admin.site.register(Reviews, ReviewAdmin)
 admin.site.register(Reply)
 admin.site.register(Prices)
+admin.site.register(Post, PostAdmin)
+
 
 
 

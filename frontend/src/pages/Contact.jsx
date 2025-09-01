@@ -16,7 +16,7 @@ const Contact = () => {
 
 
   return (
-    <div className='w-full mb-16'>
+    <div className='w-full mb-16 animate-[fadeInUp_0.5s_ease-out]'>
       <div className='w-full max-w-5xl m-auto pt-8  flex items-center flex-col '>
 
         {/* upper reservations  */}
@@ -53,7 +53,9 @@ const Contact = () => {
                 <Button 
                   className='text-xs'
                   onClick={handleSeeMore}
-                  >See More Images</Button>
+                  > 
+                  <span>{seeMore ? "See Less Images" : "See More Images"}</span>
+                  </Button>
               </div>
             </div>
           </div>

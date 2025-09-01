@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from .models import MenuItem, Reviews, Reply, Subtype, Category
+from .models import MenuItem, Reviews, Reply, Subtype, Category, Post
 from rest_framework.generics import ListAPIView
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import viewsets
-from .serializers import MenuItemSerializer, ReviewSerializers, SubtypeSerializer, CategorySerializer, MenuItemDetailSerializer
+from .serializers import MenuItemSerializer, ReviewSerializers, SubtypeSerializer, CategorySerializer, MenuItemDetailSerializer, PostSerializer
 from collections import defaultdict
 from django_filters.rest_framework import DjangoFilterBackend 
 
@@ -60,4 +60,7 @@ class CategoryAPIView(ListAPIView):
   queryset = Category.objects.all()
   serializer_class= CategorySerializer
   
+class PostAPIVIew(ListAPIView):
+  queryset = Post.objects.all()
+  serializer_class = PostSerializer
 
