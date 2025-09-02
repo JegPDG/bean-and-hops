@@ -17,7 +17,7 @@ const Posts = ({ type, src, title, caption, menuitem }) => {
   return (
     <div
       className={`relative border rounded-2xl overflow-hidden shrink-[0] ${
-        type === "video" ? "w-[225px] h-[400px]" : "w-[400px] h-[400px]" 
+        type === "video" ? "w-[225px] h-[400px]" : "size-[300px] md:size-[400px]" 
       }`}
       onClick={handleClick}
     >

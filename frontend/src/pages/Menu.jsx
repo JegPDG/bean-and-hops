@@ -4,12 +4,15 @@ import { assets } from '../assets/assets'
 import MenuItem from '../components/medium-comp/MenuItem'
 import { useQuery } from '@tanstack/react-query'
 import api from '../services/api'
-import { Outlet } from 'react-router'
+import { Outlet, useOutletContext } from 'react-router'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
 
 const Menu = () => {
+  const {menuOpen, setMenuOpen} = useOutletContext();
   const [selectedCategory, setSelectedCategory] = useState("Coffee")
   const [selectedSubtype, setSelectedSubtype] = useState(null)
-  const [categ, setCateg] = useState(null)
+  const [categ, setCateg] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const getCategory = async(categ) => {
     const res = await api.get(`menuitem/grouped-category/${categ}/`)
@@ -168,12 +171,44 @@ const Menu = () => {
 
   return (
     <div className='w-full'>
-      <div className='w-full max-w-5xl m-auto flex flex-row min-h-screen pb-8'>
-        <div>
-          <MenuSideBar
-            onMenuSelect={handleMenuSelect}
-            onSubtypeSelect={handleSubtypeSelect}
-          ></MenuSideBar>
+      <button
+        className={`${menuOpen && 'hidden'} md:hidden fixed top-20 left-4 z-50 bg-bg-dark-400 p-2 rounded`}
+        onClick={() => setSidebarOpen(true)}
+        aria-label="Open sidebar"
+      >
+        <ChevronRightIcon className='size-5'></ChevronRightIcon>
+      </button>
+
+      {/* Sidebar overlay for mobile */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-40 z-40 md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      <div className='w-full max-w-5xl m-auto flex flex-row min-h-screen pb-8 relative'>
+        <div
+          className={`
+          fixed top-0 left-0 h-full  bg-bg-dark-400 z-50 transform
+          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+          transition-transform duration-300
+          md:sticky md:top-16 md:translate-x-0 md:w-auto md:bg-transparent
+        `}
+        >
+          <div className=''>
+            <MenuSideBar
+              onMenuSelect={ category => {
+                handleMenuSelect(category)
+                setSidebarOpen(false);
+              }}
+              onSubtypeSelect={subtype => {
+              handleSubtypeSelect(subtype);
+              setSidebarOpen(false);
+            }}
+            ></MenuSideBar>
+
+          </div>
         </div>
 
         <div className='flex  flex-col'>

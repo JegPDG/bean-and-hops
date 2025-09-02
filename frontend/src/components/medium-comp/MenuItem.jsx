@@ -16,7 +16,7 @@ const MenuItem = ({name, image, prices, description, onNameSelect}) => {
         goToMenuItemDetail(name)
         onNameSelect(name)
       }}
-    className='aspect-square overflow-hidden border-2 bg-amber-300 rounded-2xl relative hover:scale-[1.01] cursor-pointer'>
+    className='aspect-square overflow-hidden border-2 bg-bg-dark-400  rounded-2xl relative hover:scale-[1.01] cursor-pointer'>
       <div className='absolute bg-bg-dark-500 rounded-br-2xl'>
         <p className='left-4 font-bold text-xl p-2 '>{name}</p>
       </div>
@@ -32,7 +32,7 @@ const MenuItem = ({name, image, prices, description, onNameSelect}) => {
           {prices.map((price, index) => 
             <li key={index}>
               <div>
-                <p className='text-md'>{price.label}</p>
+                <p className='text-sm'>{price.label}</p>
                 <p className='text-2xl font-bold'>${price.price}</p>
               </div>
             </li>

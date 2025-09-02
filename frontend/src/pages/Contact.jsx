@@ -21,11 +21,11 @@ const Contact = () => {
 
         {/* upper reservations  */}
         <div className='w-full flex items-center flex-col pb-20'>
-          <p className='text-4xl font-bold'>UPPER FLOOR RESERVATION</p>
-          <p className='w-full max-w-2xl pt-4 text-center'>Host your next gathering in comfort and style. Choose our cozy Mezzanine/Loft Area or the Entire Upper Floor -- perfect for small events, meetings, or private celebrations.</p>
+          <p className='text-xl font-bold lg:text-4xl'>UPPER FLOOR RESERVATION</p>
+          <p className='w-full max-w-2xl pt-4 text-center text-xs pl-2 pr-2'>Host your next gathering in comfort and style. Choose our cozy Mezzanine/Loft Area or the Entire Upper Floor -- perfect for small events, meetings, or private celebrations.</p>
 
-          <div className='flex pt-6'>
-            <div className='w-[500px] flex flex-col gap-2'>
+          <div className='flex pt-6 flex-col-reverse items-center'>
+            <div className='w-[300px] flex flex-col gap-2'>
               <img src={assets.place_1} alt="" />
               
               { seeMore && 
@@ -37,21 +37,21 @@ const Contact = () => {
             </div>
 
             <div className='pl-8 relative'>
-              <p className='text-sm'>Maximum of 5 hours <br />
+              <p className='text-xs'>Maximum of 5 hours <br />
                 25-30 guests <br />
                 $1,000 reservation fee <br />
                 $5,000 consumable requirement <br />
                 $200 per additional hour beyond 5 hours
               </p>
-              <p className='pt-4 text-sm'>
+              <p className='pt-4 text-xs'>
                 <span className='font-bold'>RESERVATION TERMS:</span> <br />
                 50% down payment required to confirm booking <br />
                 Remaining 50% to be paid on the day of the reservation <br />
                 No outside food allowed (subject to corkage fees)
               </p>
-              <div className='pt-8 sticky top-60'>
+              <div className='pt-8 pb-4 sticky top-60'>
                 <Button 
-                  className='text-xs'
+                  className=' '
                   onClick={handleSeeMore}
                   > 
                   <span>{seeMore ? "See Less Images" : "See More Images"}</span>
@@ -60,8 +60,8 @@ const Contact = () => {
             </div>
           </div>
 
-          <p className='pt-8 font-bold'>Plan your next memorable moment with us!</p>
-          <p className='pt-4 w-full max-w-xl text-center'>Book in advance to secure your preferred date. Ask our staff for more details or to check availability</p>
+          <p className='pt-8 font-bold text-xs'>Plan your next memorable moment with us!</p>
+          <p className='pt-4 pl-2 pr-2 w-full max-w-xl text-center text-xs'>Book in advance to secure your preferred date. Ask our staff for more details or to check availability</p>
 
         </div>
 
@@ -72,7 +72,7 @@ const Contact = () => {
           
           <p className='pt-8 font-bold'>Visit us at:</p>
           
-          <div className='flex gap-6 pt-8'>
+          <div className='flex gap-6 pt-8 flex-col'>
 
             <a href="https://www.instagram.com/beanandhops" target="_blank" >
               <div className='flex items-center cursor-pointer rounded-2xl border border-white hover:bg-white/10 p-4'>
@@ -112,8 +112,10 @@ const Contact = () => {
         </div>
 
         {/* Email Component */}
-
-        <Email></Email>
+        <div className='p-4'>
+          <Email></Email>
+        </div>
+          
       </div>
     </div>
   )

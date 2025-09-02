@@ -4,41 +4,41 @@ import { Button } from '../small-comp/Button'
 const Email = () => {
   return (
     <div className='w-full pt-8 '>
-      <div className='w-full max-w-2xl m-auto border border-white rounded-4xl pl-16 pr-16 pt-8 pb-8'>
+      <div className='w-full max-w-2xl m-auto border border-white rounded-4xl p-8'>
         <form action="">
-          <p>You can message us here through the form or send directly through: <span className='font-bold'>beanandhops@gmail.com</span> </p>
+          <p className='text-xs '>You can message us here through the form or send directly through: <span className='font-bold'>beanandhops@gmail.com</span> </p>
           
           <div className='pt-4 w-full'>
             <div className='w-full'>
-              <p>Name</p>
-              <input className='bg-bg-dark-400 p-2 rounded-lg w-full' type="text" placeholder='Name' />
+              <p className='text-xs'>Name</p>
+              <input className='bg-bg-dark-400 p-2 rounded-lg w-full text-xs' type="text" placeholder='Name' />
             </div>
 
             <div className='w-full grid grid-cols-2 gap-2 pt-2'>
               <div>
-                <p>Email</p>
-                <input className='bg-bg-dark-400 p-2 rounded-lg w-full' type="text" placeholder='Email' />
+                <p className='text-xs'>Email</p>
+                <input className='bg-bg-dark-400 p-2 rounded-lg w-full text-xs' type="text" placeholder='Email' />
               </div>
 
               <div>
-                <p>Phone</p>
-                <input className='bg-bg-dark-400 p-2 rounded-lg w-full' type="text" placeholder='Email' />
+                <p className='text-xs'>Phone</p>
+                <input className='bg-bg-dark-400 p-2 rounded-lg w-full text-xs' type="text" placeholder='Phone' />
               </div>
             </div>
 
             <div className='w-full pt-2'>
-              <p>Subject</p>
-              <input className='bg-bg-dark-400 p-2 rounded-lg w-full' type="text" placeholder='Subject' />
+              <p className='text-xs'>Subject</p>
+              <input className='bg-bg-dark-400 p-2 rounded-lg w-full text-xs' type="text" placeholder='Subject' />
             </div>
 
             <div className='w-full pt-2'>
-              <p>Message</p>
-              <textarea className='bg-bg-dark-400 rounded-lg w-full min-h-[100px] max-h-[200px] overflow-y-auto' name="" id=""></textarea>
+              <p className='text-xs'>Message</p>
+              <textarea className='bg-bg-dark-400 rounded-lg w-full min-h-[100px] max-h-[200px] overflow-y-auto text-xs' name="" id=""></textarea>
             </div>
 
             <div className='pt-4 flex justify-center'>
               <Button 
-              className='text-[14px] h-[36px]'
+              className='text-xs h-[36px]'
               >Send message</Button>
             </div>
 

@@ -94,26 +94,28 @@ const Home = () => {
           <img className='size-40'
             src={assets.bean_and_hops_white} alt="" />
 
-          <p className='font-bold text-8xl tracking-wider'>
+          <p className=' font-bold text-4xl tracking-wider sm:text-6xl lg:text-8xl'>
             BEAN &amp; HOPS
           </p>
-          <p className='text-4xl tracking-[16px]'>
+          <p className='text-lg tracking-[2px] sm:text-xl md:text-4xl lg:text-4xl'>
             COFFEE AND ROASTERY
           </p>
 
-          <p className='w-full max-w-2xl text-center mt-16 italic text-2xl'>
+          <p className='w-full max-w-xl text-center mt-16 italic text-xs sm:text-lg'>
             From bold brews to flavorful bites — Bean and Hops is where coffee meets craft and every craving finds its match.
           </p>
 
           <div className='flex gap-[20px] mt-16'>
             <Button
               onClick={ () => handleNavButt("menu/items")}
+            className='sm:text-sm'
             >
               Visit Menu
             </Button>
 
             <Button
             onClick={ () => handleNavButt("contact")}
+            className='sm:text-sm'
             >
               Reservations
             </Button>
@@ -123,7 +125,7 @@ const Home = () => {
 
       <div className='w-full '>
         <div className='w-full box-border p-[20px]'>
-          <p className='text-5xl mt-[32px] font-bold'>
+          <p className='text-3xl mt-[32px] font-bold md:text-5xl'>
             WHAT'S NEW?
           </p>
 
@@ -147,25 +149,24 @@ const Home = () => {
         </div>
       </div>
       
-      <div className='w-full bg-white pb-6'>
+      <div className='w-full bg-white pb-6 pl-4 pr-4 '>
         <div className='w-full max-w-5xl m-auto mb-8 '>
-          <div className='mt-4 pt-8 w-full m-auto flex items-baseline gap-4'>
-              <p className='text-5xl font-bold text-(--color-bg-dark-500) mr-16'>Our Place</p>
-              <Link to={'/location'} onClick={() =>  window.scrollTo(0, 0)}>
-                <p className='text-(--color-bg-dark-500) text-xl '>Location</p>
-              </Link>
-              <Link to={'/contact'} onClick={() =>  window.scrollTo(0, 0)}>
-                <p className='text-(--color-bg-dark-500) text-xl'>Reservations</p>
-              </Link>
-       
+          <div className='mt-4 pt-8 w-full m-auto flex items-baseline flex-col'>
+              <p className='text-3xl font-bold text-(--color-bg-dark-500) mr-16 md:text-5xl'>Our Place</p>
+                <Link to={'/location'} onClick={() =>  window.scrollTo(0, 0)}>
+                  <p className='text-(--color-bg-dark-500) text-xl '>Location</p>
+                </Link>
+                <Link to={'/contact'} onClick={() =>  window.scrollTo(0, 0)}>
+                  <p className='text-(--color-bg-dark-500) text-xl'>Reservations</p>
+                </Link>
           </div>
           
-          <ul className='flex flex-wrap gap-2 h-[60vh] overflow-y-auto mt-4 no-scrollbar '>
+          <ul className='flex flex-wrap gap-2 h-[60vh] overflow-y-auto mt-4 no-scrollbar md:items-center md:justify-center sm:justify-center'>
             {places.map((place, index) => 
               <li 
                 className=''
                 key={index}>
-                <img className='h-[300px] w-auto' src={place.img} alt="" />
+                <img className='h-[300px] w-auto object-cover' src={place.img} alt="" />
               </li>
             )}
           </ul>
