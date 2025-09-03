@@ -88,11 +88,3 @@ Pull requests are welcome! Please open issues for bug reports, feature requests,
 3. Commit your changes (`git commit -am 'Add new feature'`)
 4. Push to the branch (`git push origin feature/new-feature`)
 5. Open a pull request
-
-## License
-
-This project currently does not specify a license. Please update this section if you add one.
-
----
-
-For more information, visit the [GitHub repo](https://github.com/JegPDG/bean-and-hops).
