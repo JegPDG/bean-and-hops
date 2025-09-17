@@ -97,7 +97,7 @@ const Home = () => {
           <p className=' font-bold text-4xl tracking-wider sm:text-6xl lg:text-8xl'>
             BEAN &amp; HOPS
           </p>
-          <p className='text-lg tracking-[2px] sm:text-xl md:text-4xl lg:text-4xl'>
+          <p className='text-lg tracking-[2px] md:tracking-[16px] sm:text-xl md:text-4xl lg:text-4xl'>
             COFFEE AND ROASTERY
           </p>
 
@@ -151,7 +151,7 @@ const Home = () => {
       
       <div className='w-full bg-white pb-6 pl-4 pr-4 '>
         <div className='w-full max-w-5xl m-auto mb-8 '>
-          <div className='mt-4 pt-8 w-full m-auto flex items-baseline flex-col'>
+          <div className='mt-4 pt-8 w-full m-auto flex items-baseline flex-col md:flex-row md:items-center md:gap-4'>
               <p className='text-3xl font-bold text-(--color-bg-dark-500) mr-16 md:text-5xl'>Our Place</p>
                 <Link to={'/location'} onClick={() =>  window.scrollTo(0, 0)}>
                   <p className='text-(--color-bg-dark-500) text-xl '>Location</p>

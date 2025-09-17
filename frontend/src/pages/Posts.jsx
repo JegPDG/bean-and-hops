@@ -32,20 +32,20 @@ const Posts = () => {
 
   return (
     <div className='w-full'>
-      <div className='w-full max-w-4xl m-auto pt-8 pb-8'>
+      <div className='w-full max-w-4xl m-auto pt-4 pb-8 min-h-[70vh]'>
         <div>
-          <div className='flex items-center'>
-            <img className='size-24' src={assets.bean_and_hops_white} alt="" />
+          <div className='flex items-center gap-2 pl-4 pr-4'>
+            <img className='size-12 md:size-24' src={assets.bean_and_hops_white} alt="" />
             <div>
-              <p className='text-4xl font-bold tracking-wider'>BEAN &amp; HOPS</p>
-              <p className='text-lg tracking-[3px]'>COFFEE AND ROASTERY</p>
+              <p className='text-2xl md:text-3xl font-bold tracking-wider'>BEAN &amp; HOPS</p>
+              <p className='text-sm md:text-lg tracking-[3px]'>COFFEE AND ROASTERY</p>
             </div>
           </div>
         </div>
 
         {/* Posts */}
 
-        <ul className='w-full pt-8 grid grid-cols-3 gap-1 animate-[fadeInUp_0.5s_ease-out]'>
+        <ul className='w-full pt-8 grid grid-cols-3 gap-1 animate-[fadeInUp_0.5s_ease-out] pl-2 pr-2'>
           {postItem?.map((post, index) => 
             <li key={index}>
               {/* image, caption */}

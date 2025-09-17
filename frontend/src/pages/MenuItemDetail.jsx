@@ -46,39 +46,39 @@ const MenuItemDetail = () => {
 
   // console.log(category)
   return (
-    <div className='pb-16 '>
+    <div className='pb-16 mt-12 p-4'>
       <div>
         <ul className='animate-[fadeInUp_0.5s_ease-out] '>
           {meniItem?.map((item, index) => 
             <li key={index}>
               <div className='w-full pt-4'>
-                  <p className='text-5xl font-bold'>{item.mnu_category}</p>
+                  <p className='text-4xl md:text-5xl font-bold'>{item.mnu_category}</p>
               </div>
 
-              <div className='w-full flex justify-center pt-12'>
-                <p className='text-3xl'>{item.mnu_subtype}</p>
+              <div className='w-full flex justify-center pt-4'>
+                <p className='text-xl md:text-2xl'>{item.mnu_subtype}</p>
               </div>
 
-              <div className='w-full pl-4 mt-4' >
+              <div className='w-full md:pl-4 mt-4' >
                 {/* Item Card */}
-                <div className='ITEMCARD w-[100%] bg-bg-dark-400 h-[400px] flex shrink-0'>
+                <div className='ITEMCARD w-[100%] bg-bg-dark-400  flex shrink-0 flex-col md:flex-row'>
                   {/* LeftSide images */}
-                  <div className='w-[60%] bg-amber-800 h-full shrink-0'>
-                    <img className='w-full h-full object-cover' src={item.mnu_image} alt="" />
+                  <div className='md:w-[60%] w-full bg-amber-800 h-full shrink-0'>
+                    <img className='w-full aspect-square object-cover' src={item.mnu_image} alt="" />
                   </div>
 
                   {/* Right side */}
                   <div className='p-4 w-full'>
-                    <p className='text-4xl font-bold'>{item.mnu_name}</p>
+                    <p className='text-3xl md:text-4xl font-bold'>{item.mnu_name}</p>
                     <p>{item.mnu_description}</p>
 
-                    <p className='font-bold text-xl pt-16' >Price:</p>
+                    <p className='font-bold text-lg md:text-xl pt-16' >Price:</p>
 
                     <ul className='w-full'>
                       {item.mnu_prices.map((price, index) => 
                         <li key={index} className='flex flex-col items-center w-full pt-4'>
                           <p>{price.label}</p>
-                          <p className='text-2xl font-bold'>${price.price}</p>
+                          <p className='text-4xl font-bold'>${price.price}</p>
                         </li>
                       )}
                     </ul>
