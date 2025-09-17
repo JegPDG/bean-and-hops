@@ -21,13 +21,13 @@ const MenuItemsAll = () => {
             {category.map((categ, index) => 
               <li key={index} className='w-full'>
                 <div className='w-full pt-4 pr-4 pl-4'>
-                  <p className='text-5xl font-bold'>{categ.Category}</p>
+                  <p className='text-4xl md:text-5xl font-bold'>{categ.Category}</p>
                 </div> 
 
                 <ul className='w-full pl-4'>
                   {categ.Subtypes.map((subtype, index) => 
                     <li key={index} id={subtype.Subtype}>
-                      <p className='mt-4 pb-4 text-2xl'>{subtype.Subtype}</p> 
+                      <p className='mt-4 text-xl md:text-2xl'>{subtype.Subtype}</p> 
                       
                       <ul className='grid grid-cols-1 gap-2 w-full md:grid-cols-1 lg:grid-cols-2 p-4'>
                         {subtype.Items.map((item, index) => 

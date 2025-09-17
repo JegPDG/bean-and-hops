@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 const Footer = () => {
   return (
     <div className=' bg-(--color-white-500) pt-10 relative pl-4 pr-4'>
-      <div className='w-full max-w-5xl m-auto flex justify-between relative flex-col gap-4'>
+      <div className='w-full max-w-5xl m-auto flex justify-between relative flex-col gap-4 md:flex-row'>
           <div className='flex flex-col items-center'>
             <img className='size-32' src={assets.bean_and_hops_black} alt="" />
             <p className='text-xl font-bold text-(--color-bg-dark-500) md:text-2xl'>BEAN &amp; HOPS</p>
