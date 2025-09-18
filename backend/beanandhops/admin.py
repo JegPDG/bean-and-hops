@@ -1,6 +1,28 @@
 from django.contrib import admin
 from .models import MenuItem, Reviews, Reply, Prices, Category, Type, Subtype, Post
 
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.admin import GroupAdmin as BaseGroupAdmin
+from django.contrib.auth.models import User, Group
+
+from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
+from unfold.admin import ModelAdmin
+
+admin.site.unregister(User)
+admin.site.unregister(Group)
+
+@admin.register(User)
+class UserAdmin(BaseUserAdmin, ModelAdmin):
+    # Forms loaded from `unfold.forms`
+    form = UserChangeForm
+    add_form = UserCreationForm
+    change_password_form = AdminPasswordChangeForm
+
+
+@admin.register(Group)
+class GroupAdmin(BaseGroupAdmin, ModelAdmin):
+    pass
+
 # Tabular inlines
 class PricesTabularInline(admin.TabularInline):
   model = Prices
@@ -22,8 +44,12 @@ class ReplyTabularInline(admin.TabularInline):
 
 # Register your models here.
 
-class PostAdmin(admin.ModelAdmin):
-  list_display = ['pst_id','pst_image','pst_created_at', 'pst_caption',]
+class PostAdmin(ModelAdmin):
+  list_display = [
+    'pst_image',
+    'pst_created_at', 
+    'pst_caption',
+    ]
   search_fields =['pst_id', 'pst_caption']
 
   def has_delete_permission(self, request, obj = None):
@@ -31,27 +57,7 @@ class PostAdmin(admin.ModelAdmin):
 
 
 
-class TypeAdmin(admin.ModelAdmin):
-  list_display = ['name']
-  search_fields = ['name']
-
-  def has_delete_permission(self, request, obj = None):
-    return True
-
-class CategoryAdmin(admin.ModelAdmin):
-  list_display = ['type', 'name']
-  search_fields = ['type', 'name']
-
-  def has_delete_permission(self, request, obj = None):
-    return True
-
-class SubTypeAdmin(admin.ModelAdmin):
-  list_display = ['category', 'name']
-
-  def has_delete_permission(self, request, obj = None):
-    return True
-
-class ReviewAdmin(admin.ModelAdmin):
+class ReviewAdmin(ModelAdmin):
   list_display = [
     'rvw_id', 
     'rvw_item',
@@ -77,14 +83,13 @@ class ReviewAdmin(admin.ModelAdmin):
     return True
 
 
-class MenuItemAdmin(admin.ModelAdmin):
+class MenuItemAdmin(ModelAdmin):
   
-  list_display = [ 
-    'mnu_id', 
+  list_display = [  
+    'mnu_name',
     'mnu_type',
     'mnu_category',
     'mnu_subtype',
-    'mnu_name',
     'mnu_image',
     'mnu_description',
   ]
@@ -102,9 +107,6 @@ class MenuItemAdmin(admin.ModelAdmin):
     return True
   
 admin.site.register(MenuItem, MenuItemAdmin)
-admin.site.register(Type, TypeAdmin)
-admin.site.register(Category, CategoryAdmin)
-admin.site.register(Subtype, SubTypeAdmin)
 admin.site.register(Reviews, ReviewAdmin)
 admin.site.register(Reply)
 admin.site.register(Prices)
