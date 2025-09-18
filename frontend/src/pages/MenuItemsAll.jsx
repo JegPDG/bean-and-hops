@@ -17,7 +17,7 @@ const MenuItemsAll = () => {
   return (
     <div>
       {category && (
-          <ul className='w-full min-h-[100vh] mt-12 flex flex-col animate-[fadeInUp_0.6s_ease-out] '>
+          <ul className='w-full min-h-[100vh] mt-12 md:mt-4 flex flex-col animate-[fadeInUp_0.6s_ease-out] '>
             {category.map((categ, index) => 
               <li key={index} className='w-full'>
                 <div className='w-full pt-4 pr-4 pl-4'>

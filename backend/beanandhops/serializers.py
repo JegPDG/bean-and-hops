@@ -1,18 +1,30 @@
 from .models import MenuItem, Prices, Reviews, Reply, Subtype, Category, Post
 from rest_framework import serializers
+from django.contrib.auth.models import User
+
+class UserSerializer(serializers.ModelSerializer):
+  class Meta:
+    model= User
+    fields = ['id', 'first_name', 'last_name', 'email']
+
 
 class RepliesSerializer(serializers.ModelSerializer):
   rply_icon = serializers.ImageField(use_url=True)
+  user = UserSerializer(source='rply_user', read_only=True)
+  display_name = serializers.CharField(source='get_display_name', read_only=True)
 
   class Meta:
     model = Reply
     fields = [
       'rply_id',
+      'user',
+      'display_name',
       'rply_name',
       'rply_icon',
       'rply_text',
       'rply_date',
     ]
+    read_only_fields = ['rply_user', 'rply_date']
 
 class ReviewSerializers(serializers.ModelSerializer):
   rvw_replies = RepliesSerializer(many=True)
@@ -20,6 +32,10 @@ class ReviewSerializers(serializers.ModelSerializer):
   rvw_image = serializers.ImageField(use_url=True)
   rvw_item = serializers.CharField(source='rvw_item.mnu_name', read_only=True)
   rvw_date= serializers.DateTimeField(format="%I:%M %p %B %d")
+  user = UserSerializer(source='rvw_user', read_only=True)
+  display_name= serializers.CharField(source='get_display_name', read_only=True)
+  likes_count = serializers.SerializerMethodField()
+  user_liked = serializers.SerializerMethodField()
 
   class Meta:
     model = Reviews
@@ -27,6 +43,7 @@ class ReviewSerializers(serializers.ModelSerializer):
       'rvw_id', 
       'rvw_item',
       'rvw_icon',
+      'display_name',
       'rvw_name',
       'rvw_rate',
       'rvw_text',
@@ -35,6 +52,16 @@ class ReviewSerializers(serializers.ModelSerializer):
 
       'rvw_replies',
     ]
+    read_only_fields = ['rvw_user', 'rvw_date']
+
+    def get_likes_count(self, obj):
+      return obj.rvw_likes.count() if hasattr(obj, 'rvw_likes') else 0
+    
+    def get_user_liked(self, obj):
+      request = self.context.get('request')
+      if request and request.user.is_authenticated:
+          return obj.rvw_likes.filter(like_user=request.user).exists() if hasattr(obj, 'rvw_likes') else False
+      return False
 
 class PricesSerializer(serializers.ModelSerializer):
   class Meta:
