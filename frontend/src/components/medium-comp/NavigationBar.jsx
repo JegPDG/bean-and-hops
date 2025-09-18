@@ -39,7 +39,7 @@ const NavigationBar = (props) => {
 
   return (
     <>
-      <div className='bg-bg-dark-500/70 h-16 border-b-white border-b w-screen flex justify-center items-center'>
+      <div className='bg-bg-dark-500/70 h-16 border-b-white/40 border-b w-screen flex justify-center items-center'>
         <div className='flex w-full max-w-5xl items-center justify-between h-full pl-6 pr-6 relative'>
           <div className='flex items-center cursor-pointer h-full gap-2'
             onClick={ () => {

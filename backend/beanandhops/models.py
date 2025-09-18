@@ -2,6 +2,7 @@ from django.db import models
 import uuid
 from django.core.validators import MaxValueValidator, MinValueValidator
 from smart_selects.db_fields import ChainedForeignKey
+from library.models import Type, Subtype, Category
 
 
 # Create your models here.
@@ -16,27 +17,6 @@ def upload_to_review(instance, filename):
 
 def upload_to_post(instance, filename):
   return f"posts/{filename}"
-
-class Type(models.Model):
-  name = models.CharField(max_length=100)
-
-  def __str__(self):
-    return f"{self.name}"
-
-class Category(models.Model):
-  type = models.ForeignKey(Type, on_delete=models.CASCADE, related_name="categories")
-  name = models.CharField(max_length=100)
-
-  def __str__(self):
-    return f"{self.name}"
-
-class Subtype(models.Model):
-  category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="subtypes")
-  name = models.CharField(max_length=100)
-
-  def __str__(self):
-    return f"{self.name}"
-  
 
 
 
@@ -74,6 +54,10 @@ class MenuItem(models.Model):
   def __str__(self):
     return f"{self.mnu_name}"
   
+  class Meta: 
+    verbose_name_plural = 'Menu Items'
+    verbose_name = 'Menu Item'
+  
   
 class Prices(models.Model):
   menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE, related_name='mnu_prices')
@@ -82,6 +66,10 @@ class Prices(models.Model):
 
   def __str__(self):
     return f"{self.menu_item.mnu_name} - {self.label}: {self.price}"
+  
+  class Meta: 
+    verbose_name_plural = 'Prices'
+    verbose_name = 'Price'
 
 
 class Reviews(models.Model):
@@ -97,6 +85,10 @@ class Reviews(models.Model):
   def __str__(self):
     return f"{self.rvw_name}"
   
+  class Meta: 
+    verbose_name_plural = 'Reviews'
+    verbose_name = 'Review'
+  
 class Reply(models.Model):
   rply_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
   rply_to_person = models.ForeignKey(Reviews, on_delete=models.CASCADE,null=True, blank=True, related_name="rvw_replies")
@@ -107,6 +99,10 @@ class Reply(models.Model):
 
   def __str__(self):
     return f"{self.rply_name}"
+  
+  class Meta: 
+    verbose_name_plural = 'Replies'
+    verbose_name = 'Reply'
 
 class Post(models.Model):
 
@@ -119,4 +115,8 @@ class Post(models.Model):
 
   def __str__(self):
     return f"{self.pst_id}"
+  
+  class Meta: 
+    verbose_name_plural = 'Posts'
+    verbose_name = 'Post'
   
