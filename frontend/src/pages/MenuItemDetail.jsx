@@ -46,7 +46,7 @@ const MenuItemDetail = () => {
 
   // console.log(category)
   return (
-    <div className='pb-16 mt-12 p-4'>
+    <div className='pb-16 mt-12 md:mt-4  p-4'>
       <div>
         <ul className='animate-[fadeInUp_0.5s_ease-out] '>
           {meniItem?.map((item, index) => 
@@ -86,7 +86,7 @@ const MenuItemDetail = () => {
 
                   </div>
                 </div>
-{/* 
+
                 <div className='mt-8 w-full'>
                   <p className='text-2xl font-bold'>Review</p>
                   <div className='w-full h-[1px] mt-2 bg-white'></div>
@@ -117,7 +117,7 @@ const MenuItemDetail = () => {
                     <p>Add Review</p>
                   </div>
 
-                </div> */}
+                </div>
 
 
               </div>

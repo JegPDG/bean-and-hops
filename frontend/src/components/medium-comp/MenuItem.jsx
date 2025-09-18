@@ -16,7 +16,7 @@ const MenuItem = ({name, image, prices, description, onNameSelect}) => {
         goToMenuItemDetail(name)
         onNameSelect(name)
       }}
-    className='aspect-square overflow-hidden border-2 bg-bg-dark-400  rounded-2xl relative hover:scale-[1.01] cursor-pointer'>
+    className='aspect-square overflow-hidden border-2 border-white/40 bg-bg-dark-400  rounded-2xl relative hover:scale-[1.01] cursor-pointer'>
       <div className='absolute bg-bg-dark-500 rounded-br-2xl'>
         <p className='left-4 font-bold text-xl p-2 '>{name}</p>
       </div>
