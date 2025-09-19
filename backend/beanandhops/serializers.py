@@ -26,7 +26,7 @@ class RepliesSerializer(serializers.ModelSerializer):
     ]
     read_only_fields = ['rply_user', 'rply_date']
 
-class ReviewSerializers(serializers.ModelSerializer):
+class ReviewSerializer(serializers.ModelSerializer):
   rvw_replies = RepliesSerializer(many=True)
   rvw_icon = serializers.ImageField(use_url=True)
   rvw_image = serializers.ImageField(use_url=True)
@@ -34,14 +34,15 @@ class ReviewSerializers(serializers.ModelSerializer):
   rvw_date= serializers.DateTimeField(format="%I:%M %p %B %d")
   user = UserSerializer(source='rvw_user', read_only=True)
   display_name= serializers.CharField(source='get_display_name', read_only=True)
-  likes_count = serializers.SerializerMethodField()
-  user_liked = serializers.SerializerMethodField()
+  # likes_count = serializers.SerializerMethodField()
+  # user_liked = serializers.SerializerMethodField()
 
   class Meta:
     model = Reviews
     fields =[
       'rvw_id', 
       'rvw_item',
+      'user',
       'rvw_icon',
       'display_name',
       'rvw_name',
@@ -49,6 +50,8 @@ class ReviewSerializers(serializers.ModelSerializer):
       'rvw_text',
       'rvw_image',
       'rvw_date',
+      # 'likes_count',
+      # 'user_liked',
 
       'rvw_replies',
     ]
@@ -98,7 +101,7 @@ class MenuItemDetailSerializer(serializers.ModelSerializer):
   mnu_category = serializers.StringRelatedField()
   mnu_subtype = serializers.StringRelatedField()
   mnu_image = serializers.ImageField(use_url=True)
-  reviews = ReviewSerializers(many=True)
+  reviews = ReviewSerializer(many=True)
 
   class Meta:
     model = MenuItem
