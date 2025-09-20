@@ -60,21 +60,10 @@ const Home = () => {
   ]
 
   const places = [
-    {
-      img: assets.place_1
-    },
-     {
-      img: assets.place_2
-    },
-     {
-      img: assets.place_3
-    },
-     {
-      img: assets.place_4
-    },
-     {
-      img: assets.place_5
-    },
+    {img: assets.place_1},
+    {img: assets.place_2},
+    {img: assets.place_3},
+    {img: assets.place_4},
   ]
 
   return (
