@@ -12,6 +12,8 @@ import Location from './pages/Location';
 import Reviews from './pages/Reviews';
 import MenuItemDetail from './pages/MenuItemDetail';
 import MenuItemsAll from './pages/MenuItemsAll';
+import GoogleSignIn from './components/medium-comp/GoogleSignIn';
+import ReviewForm from './components/medium-comp/ReviewForm';
 
 
 function App() {
@@ -35,6 +37,8 @@ function App() {
             <Route path='/posts' element={<Posts></Posts>}></Route>
             <Route path='/location' element={<Location></Location>}></Route>
             <Route path='/reviews' element={<Reviews></Reviews>}></Route>
+            <Route path='/google-sign-in' element={<GoogleSignIn></GoogleSignIn>}></Route>
+            <Route path='/review-form' element={<ReviewForm></ReviewForm>}></Route>
           
           </Route>
         </Routes>

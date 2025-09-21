@@ -13,7 +13,7 @@ const MainLayout = () => {
       <div className='fixed top-0 left-0 w-full z-50'>
         <NavigationBar menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
       </div>
-      <div className='pt-16'>
+      <div className='pt-16 min-h-[70vh]'>
         <Outlet context={{ menuOpen, setMenuOpen }} />
       </div>
       <div>
