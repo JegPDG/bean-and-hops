@@ -64,7 +64,7 @@ export const reviewsAPI = {
 // Menu API calls
 export const menuAPI = {
   getMenuItems: () => 
-    api.get('/menu-items/'),
+    api.get('/menuitem/'),
 };
 
 export default api;

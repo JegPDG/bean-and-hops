@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useOutletContext, useParams } from 'react-router'
 import { assets } from '../assets/assets';
 import Review from '../components/medium-comp/Review';
@@ -8,6 +8,7 @@ import api from '../services/api';
 const MenuItemDetail = () => {
   let { itemname } = useParams();
   const {selectedCategory, category, selectedSubtype} = useOutletContext();
+  const [addReview, setAddReview] = useState(null)
   // console.log(itemName)
 
   const getMenuItemDetail = async() => {
@@ -41,7 +42,15 @@ const MenuItemDetail = () => {
     )
   }
 
-
+ if (addReview) {
+  return (
+    <>
+      <div className=''>
+        Hello
+      </div>
+    </>
+  )
+ }
 
 
   // console.log(category)
@@ -112,13 +121,19 @@ const MenuItemDetail = () => {
                     )}
                   </ul>
                   </div>
+                  
+                  {/* Review Form */}
 
-                  <div className='w-full m-auto flex max-w-lg gap-4  shrink-0 bg-bg-dark-400 h-12 rounded-xl mt-4 items-center justify-center hover:bg-white/10 cursor-pointer'>
+
+                  {/* Review Button */}
+                  <div 
+                    className='w-full m-auto flex max-w-lg gap-4  shrink-0 bg-bg-dark-400 h-12 rounded-xl mt-4 items-center justify-center hover:bg-white/10 cursor-pointer'
+                    onClick={() => setAddReview(true)}
+                    >
                     <p>Add Review</p>
                   </div>
 
                 </div>
-
 
               </div>
 
