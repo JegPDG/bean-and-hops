@@ -8,7 +8,7 @@ const GoogleSignIn = () => {
 
   const initializeGoogleSignIn = () => {
     window.google.accounts.id.initialize({
-      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+      client_id: process.env.VITE_GOOGLE_CLIENT_ID,
       callback: handleCredentialResponse,
       auto_prompt: false,
     });

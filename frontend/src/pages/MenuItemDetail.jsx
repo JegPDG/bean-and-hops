@@ -4,11 +4,14 @@ import { assets } from '../assets/assets';
 import Review from '../components/medium-comp/Review';
 import { useQuery } from '@tanstack/react-query';
 import api from '../services/api';
+import ReviewForm1 from '../components/medium-comp/ReviewForm1';
+import { useAuth } from '../context/AuthContext';
 
 const MenuItemDetail = () => {
   let { itemname } = useParams();
   const {selectedCategory, category, selectedSubtype} = useOutletContext();
-  const [addReview, setAddReview] = useState(null)
+  const [addReview, setAddReview] = useState(null);
+  const {user} = useAuth();
   // console.log(itemName)
 
   const getMenuItemDetail = async() => {
@@ -42,15 +45,6 @@ const MenuItemDetail = () => {
     )
   }
 
- if (addReview) {
-  return (
-    <>
-      <div className=''>
-        Hello
-      </div>
-    </>
-  )
- }
 
 
   // console.log(category)
@@ -123,6 +117,9 @@ const MenuItemDetail = () => {
                   </div>
                   
                   {/* Review Form */}
+                  {addReview && 
+                    <ReviewForm1></ReviewForm1>
+                  }
 
 
                   {/* Review Button */}
