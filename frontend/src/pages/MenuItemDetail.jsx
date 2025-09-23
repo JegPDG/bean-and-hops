@@ -118,7 +118,9 @@ const MenuItemDetail = () => {
                   
                   {/* Review Form */}
                   {addReview && 
-                    <ReviewForm1></ReviewForm1>
+                    <ReviewForm1
+                      itemReviewed={itemname}
+                    ></ReviewForm1>
                   }
 
 
