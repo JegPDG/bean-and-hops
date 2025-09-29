@@ -11,6 +11,7 @@ const ReviewForm1 = ({itemReviewed}) => {
   // user in seralizers 'id', 'first_name', 'last_name', 'email'
 
   const { user, isAuthenticated } = useAuth();
+  const [previewImage, setPreviewImage] = useState(null);
   const [formData, setFormData] = useState({
     rvw_item: itemReviewed || '',
     rvw_rate: '',
@@ -32,11 +33,29 @@ const ReviewForm1 = ({itemReviewed}) => {
       reader.readAsDataURL(file);
     }
   };
+
+  const handleTextChange = (e) => {
+    setFormData({
+      ...formData,
+      rvw_text: e.target.value,
+    });
+  };
+
+  const handleCancel = () => {
+    setFormData({
+      rvw_item: selectedMenuItem || '',
+      rvw_rate: '',
+      rvw_text: '',
+      rvw_image: null
+    });
+    setPreviewImage(null);
+    setShowForm(false);
+  };
   
 
   return (
     <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 '>
-      <div className='bg-bg-dark-400 min-w-[300px] max-w-[600px] w-full box-border p-4 rounded-2xl'>
+      <div className='bg-bg-dark-400 min-w-[300px] max-w-[800px] w-full box-border p-4 rounded-2xl'>
         <form action="">
           <div className='flex justify-center'>
             <p className='text-3xl font-bold'>Write a review!</p>
@@ -48,9 +67,9 @@ const ReviewForm1 = ({itemReviewed}) => {
             <select
               name="rvw_rate"
               value={formData.rvw_rate}
-              // onChange={handleChange}
+              onChange={handleTextChange}
               required
-              className='bg-bg-dark-400 max-w-[250px] p-2 rounded-lg mt-2'
+              className='bg-bg-dark-400 max-w-[300px] p-2 rounded-lg mt-2'
             >
               <option value="">Select rating...</option>
               <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
@@ -87,29 +106,58 @@ const ReviewForm1 = ({itemReviewed}) => {
                     ></textarea>
                   {/* <p className='text-sm'> {text} </p> */}
 
+                  {/* Image preview */}
+                  {previewImage && (
+                    <div className='mt-4 rounded-2xl w-full bg-bg-dark-400 flex items-center justify-center overflow-hidden relative'>
+                      <img className='w-full h-full object-cover' src={previewImage} alt="Preview" />
+                      <button
+                        onClick={() => {
+                          setPreviewImage(null);
+                          setFormData({...formData, rvw_image: null});
+                        }}
+                        className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  )}
                   
                   <div className='w-full h-[0.5px] mt-2 bg-white/10'></div>
 
                   {/* Button */}
                   <div className='flex flex-row gap-2 justify-end'>
-                    <button className='bg-bg-dark-400  pl-4 pr-4 pt-2 pb-2 mt-1 rounded-md text-xs cursor-pointer bg-bg-dark-500/80 hover:bg-white/10 flex gap-2'>
+                    {/* <button 
+                      className='bg-bg-dark-400  pl-4 pr-4 pt-2 pb-2 mt-1 rounded-md text-xs cursor-pointer bg-bg-dark-500/80 hover:bg-white/10 flex gap-2'>
                       <PlusIcon className='size-4'></PlusIcon>
                       Add Image 
-                    </button>
-                    {/* <input 
-                      type="file" 
-                      className='bg-bg-dark-400  pl-4 pr-4 pt-2 pb-2 mt-1 rounded-md text-xs cursor-pointer hover:bg-white/10 flex gap-2'
+                    </button> */}
 
+
+
+                    <div className='flex border border-white/10 mt-1 rounded-md'>
+                      <input 
+                        type="file" 
+                        accept='image/*'
+                        className='bg-bg-dark-400 w-full  pl-4 pr-4 pt-2 pb-2 rounded-l-md text-xs cursor-pointer hover:bg-white/10 flex gap-2'
+                        onChange={handleImageChange}
+                        id='image-upload'
+                        >
+                      </input>
+
+                      <label 
+                        htmlFor="image-upload"
+                        className="inline-block bg-bg-dark-500/80 px-3 py-1 rounded-r-md text-xs cursor-pointer hover:bg-white/10 transition-colors "
                       >
                         <PlusIcon className='size-4'></PlusIcon>
-                        Add Image
-                      </input> */}
+                        Add Photo
+                      </label>
+                    </div>
+                    
 
-
-                    <button className='bg-bg-dark-400 bg-bg-dark-500/80 pl-4 pr-4 pt-2 pb-2 mt-1 rounded-md text-xs cursor-pointer hover:bg-white/10'>
+                    <button className='bg-bg-dark-500/80 pl-4 pr-4 pt-2 pb-2 mt-1 rounded-md text-xs cursor-pointer hover:bg-white/10 border border-white/10'>
                       Submit
                     </button>
-                    <button className='bg-bg-dark-400 bg-bg-dark-500/80 pl-4 pr-4 pt-2 pb-2 mt-1 rounded-md text-xs cursor-pointer hover:bg-white/10'>
+                    <button className=' bg-bg-dark-500/80 pl-4 pr-4 pt-2 pb-2 mt-1 rounded-md text-xs cursor-pointer hover:bg-white/10 border border-white/10'>
                       Cancel
                     </button>
 
