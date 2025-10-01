@@ -3,9 +3,16 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 
 class UserSerializer(serializers.ModelSerializer):
+  picture = serializers.SerializerMethodField()
+
   class Meta:
     model= User
-    fields = ['id', 'first_name', 'last_name', 'email']
+    fields = ['id', 'first_name', 'last_name', 'email', 'picture']
+
+  def get_picture(self, obj):
+    if hasattr(obj, 'profile') and obj.profile.picture_url:
+        return obj.profile.picture_url
+    return None
 
 
 class RepliesSerializer(serializers.ModelSerializer):
@@ -27,11 +34,11 @@ class RepliesSerializer(serializers.ModelSerializer):
     read_only_fields = ['rply_user', 'rply_date']
 
 class ReviewSerializer(serializers.ModelSerializer):
-  rvw_replies = RepliesSerializer(many=True)
-  rvw_icon = serializers.ImageField(use_url=True)
-  rvw_image = serializers.ImageField(use_url=True)
-  rvw_item = serializers.CharField(source='rvw_item.mnu_name', read_only=True)
-  rvw_date= serializers.DateTimeField(format="%I:%M %p %B %d")
+  rvw_replies = RepliesSerializer(many=True, required=False)
+  rvw_icon = serializers.ImageField(use_url=True, required=False, allow_null=True)
+  rvw_image = serializers.ImageField(use_url=True, required=False, allow_null=True)
+  # rvw_item = serializers.CharField(source='rvw_item.mnu_id', read_only=True)
+  rvw_date= serializers.DateTimeField(format="%I:%M %p %B %d", read_only=True)
   user = UserSerializer(source='rvw_user', read_only=True)
   display_name= serializers.CharField(source='get_display_name', read_only=True)
   # likes_count = serializers.SerializerMethodField()

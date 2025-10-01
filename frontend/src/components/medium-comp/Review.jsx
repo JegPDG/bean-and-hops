@@ -26,12 +26,14 @@ const Review = ({profilePic, username, rate, itemReviewed, text, image, dateTime
 
           {/* Rate */}
           <div className='flex items-center'>
-            <StarSolid className='size-4'></StarSolid>
-            <StarSolid className='size-4'></StarSolid>
-            <StarSolid className='size-4'></StarSolid>
-            <StarOutline className='size-4'></StarOutline>
-            <StarOutline className='size-4'></StarOutline>
-            <p>{rate}</p>
+            {[...Array(5)].map((_, index) =>
+              index < rate ? (
+                <StarSolid key={index} className="size-4 text-yellow-500 fill-yellow-500" />
+              ) : (
+                <StarOutline key={index} className="size-4 text-gray-400" />
+              )
+            )}
+            <p className="ml-2">{rate}</p>
           </div>
         </div>
 

@@ -2,25 +2,32 @@ import React, { useState } from 'react'
 import { useOutletContext, useParams } from 'react-router'
 import { assets } from '../assets/assets';
 import Review from '../components/medium-comp/Review';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import api from '../services/api';
 import ReviewForm1 from '../components/medium-comp/ReviewForm1';
 import { useAuth } from '../context/AuthContext';
+import GoogleSignIn from '../components/medium-comp/GoogleSignIn';
 
 const MenuItemDetail = () => {
   let { itemname } = useParams();
   const {selectedCategory, category, selectedSubtype} = useOutletContext();
   const [addReview, setAddReview] = useState(null);
   const {user} = useAuth();
+  const queryClient = useQueryClient();
   // console.log(itemName)
 
   const getMenuItemDetail = async() => {
     const res = await api.get(`item-detail/?mnu_name=${itemname}`)
-    console.log(res.data)
+    console.log( "Menu Item Detail",res.data)
     return res.data
   }
 
-  const {data: meniItem, isLoading, error} = useQuery({
+  const handleReviewSubmitted = () => {
+  setAddReview(false); // Optionally close the form
+  queryClient.invalidateQueries(['menuDetail']); // This will refetch the menu item detail
+  };
+
+  const {data: menuItem, isLoading, error} = useQuery({
     queryKey : ['menuDetail'],
     queryFn: getMenuItemDetail,
     keepPreviousData: true
@@ -45,14 +52,14 @@ const MenuItemDetail = () => {
     )
   }
 
-
+  console.log(menuItem[0].mnu_id)
 
   // console.log(category)
   return (
     <div className='pb-16 mt-12 md:mt-4  p-4'>
       <div>
         <ul className='animate-[fadeInUp_0.5s_ease-out] '>
-          {meniItem?.map((item, index) => 
+          {menuItem?.map((item, index) => 
             <li key={index}>
               <div className='w-full pt-4'>
                   <p className='text-4xl md:text-5xl font-bold'>{item.mnu_category}</p>
@@ -101,7 +108,7 @@ const MenuItemDetail = () => {
                     {item.reviews.map((review, index) => 
                       <li key={index}>
                         <Review
-                          profilePic={review.rvw_icon}
+                          profilePic={review.user?.picture}
                           username={review.rvw_name}
                           rate={review.rvw_rate}
                           // itemReviewed={review.rvw_item}
@@ -119,11 +126,12 @@ const MenuItemDetail = () => {
                   {/* Review Form */}
                   {addReview && 
                     <ReviewForm1
-                      itemReviewed={itemname}
+                      itemReviewed={menuItem[0].mnu_id}
+                      onReviewSubmitted={handleReviewSubmitted}
                     ></ReviewForm1>
                   }
 
-
+                  
                   {/* Review Button */}
                   <div 
                     className='w-full m-auto flex max-w-lg gap-4  shrink-0 bg-bg-dark-400 h-12 rounded-xl mt-4 items-center justify-center hover:bg-white/10 cursor-pointer'

@@ -3,15 +3,19 @@ import { StarIcon as StarOutline, ArrowTurnDownRightIcon  } from '@heroicons/rea
 import { PlusIcon, StarIcon as StarSolid } from '@heroicons/react/24/solid'
 
 import Reply from './Reply'
-import { useAuth } from '../../context/AuthContext'
+import { useAuth} from '../../context/AuthContext'
+import { reviewsAPI } from '../../services/api'
+import GoogleSignIn from './GoogleSignIn'
 
 
-const ReviewForm1 = ({itemReviewed}) => {
+const ReviewForm1 = ({itemReviewed, onReviewSubmitted}) => {
   // {profilePic, username, rate, itemReviewed, text, image, dateTime, replies}
   // user in seralizers 'id', 'first_name', 'last_name', 'email'
 
   const { user, isAuthenticated } = useAuth();
   const [previewImage, setPreviewImage] = useState(null);
+  const [loading, setLoading] = useState(false)
+  const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
     rvw_item: itemReviewed || '',
     rvw_rate: '',
@@ -34,6 +38,58 @@ const ReviewForm1 = ({itemReviewed}) => {
     }
   };
 
+  const handleSubmit = async () => {
+    if (!isAuthenticated) {
+      alert('Please sign in first');
+      return;
+    }
+
+    if (!formData.rvw_text.trim()) {
+      alert('Please write a review');
+      return;
+    }
+
+    if (!formData.rvw_rate) {
+      alert('Please select a rating');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const submitData = new FormData();
+      submitData.append('rvw_item', formData.rvw_item);
+      submitData.append('rvw_rate', parseInt(formData.rvw_rate));
+      submitData.append('rvw_text', formData.rvw_text);
+      
+      if (formData.rvw_image) {
+        submitData.append('rvw_image', formData.rvw_image);
+      }
+
+      await reviewsAPI.createReview(submitData);
+      
+      // Reset form
+      setFormData({
+        rvw_item: itemReviewed || '',
+        rvw_rate: '',
+        rvw_text: '',
+        rvw_image: null
+      });
+      setPreviewImage(null);
+      setShowForm(false);
+      
+      if (onReviewSubmitted) {
+        onReviewSubmitted();
+      }
+      
+      alert('✅ Review submitted successfully!');
+    } catch (error) {
+      console.error('Error submitting review:', error);
+      alert('❌ Error submitting review');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleTextChange = (e) => {
     setFormData({
       ...formData,
@@ -41,9 +97,10 @@ const ReviewForm1 = ({itemReviewed}) => {
     });
   };
 
+
   const handleCancel = () => {
     setFormData({
-      rvw_item: selectedMenuItem || '',
+      rvw_item: itemReviewed || '',
       rvw_rate: '',
       rvw_text: '',
       rvw_image: null
@@ -51,6 +108,26 @@ const ReviewForm1 = ({itemReviewed}) => {
     setPreviewImage(null);
     setShowForm(false);
   };
+
+  if (!showForm) {
+    return (
+      <div className="w-full max-w-lg m-auto pt-4">
+        {isAuthenticated ? (
+          <button 
+            type="button"
+            onClick={() => setShowForm(true)}
+            className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-2 rounded-md text-sm font-medium transition-colors"
+          >
+            ✍️ Write a Review
+          </button>
+        ) : (
+          <div className="text-center p-4 bg-bg-dark-400 rounded-lg">
+            <GoogleSignIn></GoogleSignIn>
+          </div>
+        )}
+      </div>
+    );
+  }
   
 
   return (
@@ -67,7 +144,7 @@ const ReviewForm1 = ({itemReviewed}) => {
             <select
               name="rvw_rate"
               value={formData.rvw_rate}
-              onChange={handleTextChange}
+              onChange={(e) => setFormData({...formData, rvw_rate: e.target.value})}
               required
               className='bg-bg-dark-400 max-w-[300px] p-2 rounded-lg mt-2'
             >
@@ -84,14 +161,14 @@ const ReviewForm1 = ({itemReviewed}) => {
           <div className='w-full m-auto flex max-w-lg gap-4 pt-4 shrink-0'>
             {/* Profile picture */}
             <div className='size-12 aspect-square rounded-[50%] bg-amber-50 flex overflow-hidden shrink-0'>
-              <img className='size-12 object-cover shrink-0' src={user?.first_name} alt="" />
+              <img className='size-12 object-cover shrink-0' src={user?.picture} alt="" />
             </div>
 
             <div className='w-full '> 
               <div className='flex shrink-0'>
 
                 {/* Username */}
-                <p className='font-bold'>Usernamee</p> 
+                <p className='font-bold'>{user?.first_name}</p> 
                 {/* <p> &nbsp; | &nbsp;</p> */}
 
               </div>
@@ -102,6 +179,7 @@ const ReviewForm1 = ({itemReviewed}) => {
                   <textarea 
                     name="comment" 
                     id="review-input"
+                    onChange={handleTextChange}
                     className='w-full bg-bg-dark-500 text-sm resize-none p-[4px] min-h-[100px] mt-2 rounded-lg'
                     ></textarea>
                   {/* <p className='text-sm'> {text} </p> */}
@@ -138,7 +216,7 @@ const ReviewForm1 = ({itemReviewed}) => {
                       <input 
                         type="file" 
                         accept='image/*'
-                        className='bg-bg-dark-400 w-full  pl-4 pr-4 pt-2 pb-2 rounded-l-md text-xs cursor-pointer hover:bg-white/10 flex gap-2'
+                        className='hidden'
                         onChange={handleImageChange}
                         id='image-upload'
                         >
@@ -146,7 +224,7 @@ const ReviewForm1 = ({itemReviewed}) => {
 
                       <label 
                         htmlFor="image-upload"
-                        className="inline-block bg-bg-dark-500/80 px-3 py-1 rounded-r-md text-xs cursor-pointer hover:bg-white/10 transition-colors "
+                        className="flex flex-row items-center bg-bg-dark-500/80 px-3 py-1 rounded-md text-xs cursor-pointer hover:bg-white/10 transition-colors "
                       >
                         <PlusIcon className='size-4'></PlusIcon>
                         Add Photo
@@ -154,10 +232,15 @@ const ReviewForm1 = ({itemReviewed}) => {
                     </div>
                     
 
-                    <button className='bg-bg-dark-500/80 pl-4 pr-4 pt-2 pb-2 mt-1 rounded-md text-xs cursor-pointer hover:bg-white/10 border border-white/10'>
-                      Submit
+                    <button 
+                      type='button'
+                      onClick={handleSubmit}
+                      className='bg-bg-dark-500/80 pl-4 pr-4 pt-2 pb-2 mt-1 rounded-md text-xs cursor-pointer hover:bg-white/10 border border-white/10'>
+                      {loading ? 'Submitting...' : 'Submit'}
                     </button>
-                    <button className=' bg-bg-dark-500/80 pl-4 pr-4 pt-2 pb-2 mt-1 rounded-md text-xs cursor-pointer hover:bg-white/10 border border-white/10'>
+                    <button 
+                      onClick={handleCancel}
+                      className=' bg-bg-dark-500/80 pl-4 pr-4 pt-2 pb-2 mt-1 rounded-md text-xs cursor-pointer hover:bg-white/10 border border-white/10'>
                       Cancel
                     </button>
 

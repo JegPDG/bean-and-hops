@@ -57,6 +57,12 @@ def google_auth(request):
                 'last_name': family_name,
             }
         )
+
+        # ✅ Create or update UserProfile with picture
+        from .models import UserProfile
+        profile, _ = UserProfile.objects.get_or_create(user=user)
+        profile.picture_url = picture
+        profile.save()
         
         # Generate JWT tokens
         refresh = RefreshToken.for_user(user)

@@ -19,6 +19,18 @@ def upload_to_review(instance, filename):
 def upload_to_post(instance, filename):
   return f"posts/{filename}"
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    picture_url = models.URLField(max_length=500, blank=True, null=True)
+    google_id = models.CharField(max_length=255, blank=True, null=True)
+    
+    def __str__(self):
+        return f"{self.user.email}'s profile"
+    
+    class Meta:
+        verbose_name = 'User Profile'
+        verbose_name_plural = 'User Profiles'
+
 
 
 class MenuItem(models.Model):
