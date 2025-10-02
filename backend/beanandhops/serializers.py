@@ -19,6 +19,7 @@ class RepliesSerializer(serializers.ModelSerializer):
   rply_icon = serializers.ImageField(use_url=True)
   user = UserSerializer(source='rply_user', read_only=True)
   display_name = serializers.CharField(source='get_display_name', read_only=True)
+  rply_date = serializers.DateTimeField(format="%I:%M %p %B %d", read_only=True)
 
   class Meta:
     model = Reply
@@ -26,6 +27,7 @@ class RepliesSerializer(serializers.ModelSerializer):
       'rply_id',
       'user',
       'display_name',
+      'rply_to_person',
       'rply_name',
       'rply_icon',
       'rply_text',

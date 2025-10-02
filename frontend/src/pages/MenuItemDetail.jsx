@@ -23,8 +23,8 @@ const MenuItemDetail = () => {
   }
 
   const handleReviewSubmitted = () => {
-  setAddReview(false); // Optionally close the form
-  queryClient.invalidateQueries(['menuDetail']); // This will refetch the menu item detail
+    setAddReview(false); // Optionally close the form
+    queryClient.invalidateQueries(['menuDetail']); // This will refetch the menu item detail
   };
 
   const {data: menuItem, isLoading, error} = useQuery({
@@ -112,6 +112,7 @@ const MenuItemDetail = () => {
                           username={review.rvw_name}
                           rate={review.rvw_rate}
                           // itemReviewed={review.rvw_item}
+                          reviewID={review.rvw_id}
                           text={review.rvw_text}
                           image={review.rvw_image}
                           dateTime={review.rvw_date}
@@ -134,7 +135,7 @@ const MenuItemDetail = () => {
                   
                   {/* Review Button */}
                   <div 
-                    className='w-full m-auto flex max-w-lg gap-4  shrink-0 bg-bg-dark-400 h-12 rounded-xl mt-4 items-center justify-center hover:bg-white/10 cursor-pointer'
+                    className={`w-full m-auto flex max-w-lg gap-4  shrink-0 bg-bg-dark-400 h-12 rounded-xl mt-4 items-center justify-center hover:bg-white/10 cursor-pointer ${addReview ? 'hidden': 'block'}`}
                     onClick={() => setAddReview(true)}
                     >
                     <p>Add Review</p>

@@ -116,12 +116,13 @@ const ReviewForm1 = ({itemReviewed, onReviewSubmitted}) => {
           <button 
             type="button"
             onClick={() => setShowForm(true)}
-            className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-2 rounded-md text-sm font-medium transition-colors"
+            className="w-full m-auto flex max-w-lg gap-4  shrink-0 bg-bg-dark-400 h-12 rounded-xl mt-4 items-center justify-center hover:bg-white/10 cursor-pointer"
           >
             ✍️ Write a Review
           </button>
         ) : (
           <div className="text-center p-4 bg-bg-dark-400 rounded-lg">
+            <p className="text-white text-lg font-bold">Sign in with Google to write a review</p>
             <GoogleSignIn></GoogleSignIn>
           </div>
         )}
@@ -200,6 +201,7 @@ const ReviewForm1 = ({itemReviewed, onReviewSubmitted}) => {
                     </div>
                   )}
                   
+                  {/* Line  */}
                   <div className='w-full h-[0.5px] mt-2 bg-white/10'></div>
 
                   {/* Button */}

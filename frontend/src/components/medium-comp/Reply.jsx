@@ -3,9 +3,9 @@ import { StarIcon as StarOutline, ArrowTurnDownRightIcon  } from '@heroicons/rea
 
 
 
-const Reply = ({username, profilePic, text, dateTime}) => {
+const Reply = ({username, profilePic, text, dateTime, user}) => {
 
-  // username, text, prof-pic, dateTime
+  // username, text, prof-pic, dateTime, user
 
 
 
@@ -21,13 +21,13 @@ const Reply = ({username, profilePic, text, dateTime}) => {
           <div className='Anoto flex gap-4 shrink-0'>
             {/* Profile picture */}
             <div className='size-8 aspect-square rounded-[50%] flex overflow-hidden'>
-              <img className='w-full h-full object-cover border-none' src={profilePic} alt="" />
+              <img className='w-full h-full object-cover border-none' src={user?.picture} alt="" />
             </div>
 
             <div> 
               {/* Name */}
               <div className='flex items-center gap-4'>
-                <p className='font-bold'>{username}</p> 
+                <p className='font-bold'>{user?.first_name}</p> 
               </div>
               {/* Text */}
 

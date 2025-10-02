@@ -124,7 +124,6 @@ const GoogleSignIn = () => {
   // ✅ Show Google Sign-In button
   return (
     <div >
-      <p className="text-white text-lg font-bold">Sign in with Google to write a review</p>
       <div ref={googleButtonRef} className="flex justify-center mt-3"></div>
       {/* Debug info - remove this after testing */}
       <div className="mt-2 text-xs text-white/50">

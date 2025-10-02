@@ -1,13 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StarIcon as StarOutline, ArrowTurnDownRightIcon  } from '@heroicons/react/24/outline'
-import { StarIcon as StarSolid } from '@heroicons/react/24/solid'
+import { StarIcon as StarSolid, XMarkIcon } from '@heroicons/react/24/solid'
 
 import Reply from './Reply'
+import ReplyForm from './ReplyForm'
+import { useAuth } from '../../context/AuthContext'
+import GoogleSignIn from './GoogleSignIn'
+import { useQueryClient } from '@tanstack/react-query'
 
 
-const Review = ({profilePic, username, rate, itemReviewed, text, image, dateTime, replies}) => {
- 
-  // prof-pic, username, rate [int], ite,-reviewed [default none], text, image [array],  datetime, reply [array], 
+const Review = ({profilePic, username, rate, itemReviewed, text, image, dateTime, replies, reviewID}) => {
+  //Used in MenuItemDetail.jsx
+  // prof-pic, username, rate [int], item-reviewed [default none], text, image [array],  datetime, reply [array], 
+
+  // Reply Forms variables
+  const [showReplyForm, setReplyForm] = useState(false);
+  const {isAuthenticated} = useAuth();
+  const queryClient = useQueryClient();
+
+  // Replies renders variables
+  const [showAll, setShowAll] = useState(false)
+
+  // if (!replies || replies.length === 0) return null;
+
+
+
+  // Reply Form Functions
+  const handleReplyButton = (e) => {
+    e.preventDefault();
+    setReplyForm(true)
+  }
+
+  const handleReplySubmitted = () => {
+    setReplyForm(false)
+    queryClient.invalidateQueries(['menuDetail']);
+  }
+
+  const handleCancel = () =>{
+    setReplyForm(false)
+  }
+
 
   return (
     <div className='w-full m-auto flex max-w-lg gap-4 pt-4 shrink-0'>
@@ -69,31 +101,87 @@ const Review = ({profilePic, username, rate, itemReviewed, text, image, dateTime
 
           {/* Reply button */}
           <div className=''>
-            <button className='bg-bg-dark-400  pl-4 pr-4 pt-1 pb-1 mt-1 rounded-md text-xs cursor-pointer hover:bg-white/10'>
+            <button 
+              onClick={handleReplyButton}
+              className='bg-bg-dark-400  pl-4 pr-4 pt-1 pb-1 mt-1 rounded-md text-xs cursor-pointer hover:bg-white/10'>
               Reply
             </button>
           </div>
 
-          {/* Store reply here */}
+
+          {/* Replies Render */}
           <div>
             {/* Accepts username, text, prof-pic */}
-            {replies?.length > 0 &&
-              (
+            {showAll ? (
+              replies?.length > 0 && (
                 <ul>
-                  {replies?.map((reply, index) =>
+                  {replies.map((reply, index) => (
                     <li key={index}>
                       <Reply
                         username={reply.rply_name}
                         profilePic={reply.rply_icon}
+                        dateTime={reply.rply_date}
                         text={reply.rply_text}
-                      ></Reply>
+                        user={reply.user}
+                      />
                     </li>
-                  )}
-                </ul>
-              )
-            }
-          </div>
+                  ))}
 
+                  <div className='w-full flex items-center justify-center mt-2'>
+                    <button
+                       onClick={() => setShowAll(false)} 
+                       className='text-blue-500 text-sm cursor-pointer'
+                      >
+                      Hide Replies
+                    </button>
+                  </div>
+                </ul>
+                
+              )
+            ) : (
+              <div className='w-full flex items-center justify-center'>
+                <button 
+                  onClick={() => setShowAll(true)} 
+                  className="text-blue-500 text-sm cursor-pointer">
+                  Show replies
+                </button>
+              </div>
+            )}
+
+          </div>
+          
+          {/* Reply Form  */}
+          {showReplyForm ? (
+            isAuthenticated ? (
+              <div className="w-full mt-2">
+                <ReplyForm 
+                  reviewId={reviewID} 
+                  onReplySubmitted={handleReplySubmitted}
+                  onCancel={handleCancel}
+                  />
+              </div>
+            ) : (
+              <div className="text-center p-4 bg-bg-dark-400 rounded-lg mt-2 relative">
+                <button
+                  onClick={() => setReplyForm(false)}
+                  className='absolute top-2 right-2 bg-white size-5 text-bg-dark-500 font-bold rounded-[50%] items-center justify-center'
+                >
+                  <XMarkIcon fill='black'></XMarkIcon>
+                </button>
+
+                <p className="text-white text-lg font-bold">
+                  Sign in with Google to write a Reply
+                </p>
+                <GoogleSignIn />
+              </div>
+            )
+          ) : null}
+
+          {/* <div className='w-full'>
+            <ReplyForm
+              reviewId={reviewID}
+            ></ReplyForm>
+          </div> */}
 
         </div>
 
