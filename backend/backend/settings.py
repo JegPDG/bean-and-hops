@@ -15,6 +15,8 @@ from datetime import timedelta
 import os
 from dotenv import load_dotenv
 
+from django.templatetags.static import static
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -132,8 +134,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / STATIC_URL
+# STATIC_URL = 'static/'
+# STATIC_ROOT = BASE_DIR / STATIC_URL
+
+STATIC_URL = '/static/'   # this is the URL prefix, not a folder
+
+# where collectstatic will put all static files in production
+STATIC_ROOT = BASE_DIR / "staticfiles"  
+
+# optional, for extra static files in development
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # your custom overrides (like logo.svg, etc.)
+]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -177,4 +189,21 @@ GOOGLE_CLIENT_SECRET = os.environ.get('GOOGLE_CLIENT_SECRET')
 
 UNFOLD = {
   "SITE_HEADER" : "Bean and Hops",
+  "SITE_TITLE": "Bean and Hops Admin",
+   "SITE_LOGO": {
+        "light": lambda request: static("unfold/images/beanandhops_icon-white.svg"),
+        "dark": lambda request: static("unfold/images/beanandhops_icon-white.svg"),
+    },
+    "SITE_ICON": {
+        "light": lambda request: static("unfold/images/beanandhops_icon-white.svg"),
+        "dark": lambda request: static("unfold/images/beanandhops_icon-white.svg"),
+    },
+    "SITE_FAVICONS": [
+        {
+            "rel": "icon",
+            "sizes": "32x32",
+            "type": "image/svg+xml",
+            "href": lambda request: static("unfold/images/beanandhops_icon-white.svg"),
+        },
+    ],
 }

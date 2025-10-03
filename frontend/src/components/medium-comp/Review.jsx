@@ -164,7 +164,7 @@ const Review = ({profilePic, username, rate, itemReviewed, text, image, dateTime
               <div className="text-center p-4 bg-bg-dark-400 rounded-lg mt-2 relative">
                 <button
                   onClick={() => setReplyForm(false)}
-                  className='absolute top-2 right-2 bg-white size-5 text-bg-dark-500 font-bold rounded-[50%] items-center justify-center'
+                  className='absolute top-2 right-2 bg-white/40 size-5 text-bg-dark-500 font-bold rounded-[50%] items-center justify-center'
                 >
                   <XMarkIcon fill='black'></XMarkIcon>
                 </button>

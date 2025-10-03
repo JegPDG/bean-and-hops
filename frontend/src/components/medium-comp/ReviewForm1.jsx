@@ -122,7 +122,7 @@ const ReviewForm1 = ({itemReviewed, onReviewSubmitted}) => {
           </button>
         ) : (
           <div className="text-center p-4 bg-bg-dark-400 rounded-lg">
-            <p className="text-white text-lg font-bold">Sign in with Google to write a review</p>
+            <p className="text-white text-lg font-bold">Sign in with Google to write a Review</p>
             <GoogleSignIn></GoogleSignIn>
           </div>
         )}

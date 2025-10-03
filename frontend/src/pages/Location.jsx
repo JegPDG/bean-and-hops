@@ -1,5 +1,7 @@
 import { MapPinIcon } from '@heroicons/react/24/outline'
 import React from 'react'
+import CafeLocationMap from '../components/medium-comp/CafeLocationMap'
+import { ArrowUpRightIcon } from '@heroicons/react/24/solid'
 
 const Location = () => {
   return (
@@ -9,7 +11,15 @@ const Location = () => {
           
           <p className='text-4xl font-bold'>STORE LOCATION</p>
           
-          <p className='mt-4'>location link to directly use the phones maps</p>
+          <a 
+            href="https://www.google.com/maps/search/?api=1&query=11.7177845,122.3769846" 
+            target='_blank'  
+            rel="noopener noreferrer">
+            <div className='flex flex-row items-center gap-2 cursor-pointer mt-4 '>
+              <p className='hover:text-blue-400'>use Google Maps </p>
+              <ArrowUpRightIcon className='size-4 '></ArrowUpRightIcon>
+            </div>
+          </a>
           
           <div className='flex items-center justify-center mt-4'>
             <MapPinIcon className='size-6'></MapPinIcon>
@@ -17,7 +27,7 @@ const Location = () => {
           </div>
 
           <div>
-            
+            <CafeLocationMap></CafeLocationMap>
           </div>
 
         </div>

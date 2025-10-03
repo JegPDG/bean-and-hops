@@ -10,9 +10,9 @@ const Reply = ({username, profilePic, text, dateTime, user}) => {
 
 
   return (
-     <div className='ReplyMain w-full flex mt-6 ml-8 gap-2'>
+     <div className='ReplyMain w-full flex mt-6  md:ml-8 gap-2'>
         {/* Icon */}
-        <div className='size-6'>
+        <div className='size-6 shrink-0'>
           <ArrowTurnDownRightIcon className='size-6'></ArrowTurnDownRightIcon>
         </div>
 
@@ -20,7 +20,7 @@ const Reply = ({username, profilePic, text, dateTime, user}) => {
         <div>
           <div className='Anoto flex gap-4 shrink-0'>
             {/* Profile picture */}
-            <div className='size-8 aspect-square rounded-[50%] flex overflow-hidden'>
+            <div className='size-8 aspect-square rounded-[50%] flex overflow-hidden shrink-0'>
               <img className='w-full h-full object-cover border-none' src={user?.picture} alt="" />
             </div>
 
