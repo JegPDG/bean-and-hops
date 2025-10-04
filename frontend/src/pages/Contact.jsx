@@ -73,7 +73,7 @@ const Contact = () => {
               <div className='flex transition-transform duration-300 ease-out h-full'
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
               >
-                {placeImages.map((image, index) =>
+                {placeImages?.map((image, index) =>
                   <img 
                     key={index}
                     src={image}

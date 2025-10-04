@@ -85,7 +85,7 @@ const MenuItemDetail = () => {
                     <p className='font-bold text-lg md:text-xl pt-16' >Price:</p>
 
                     <ul className='w-full'>
-                      {item.mnu_prices.map((price, index) => 
+                      {item.mnu_prices?.map((price, index) => 
                         <li key={index} className='flex flex-col items-center w-full pt-4'>
                           <p>{price.label}</p>
                           <p className='text-4xl font-bold'>${price.price}</p>
