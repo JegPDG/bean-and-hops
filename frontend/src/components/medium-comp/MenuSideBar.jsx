@@ -18,7 +18,7 @@ const MenuSideBar = ({ onMenuSelect, onSubtypeSelect }) => {
   const getSideBarElement = async() => {
     const res = await api.get('category/')
 
-    return res.data
+    return res.data.results
   }
 
   const {data: menuelements, isLoading, error} = useQuery({

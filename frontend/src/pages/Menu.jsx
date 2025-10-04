@@ -30,6 +30,8 @@ const Menu = () => {
     enabled: !!selectedCategory,
   })
 
+  console.log("Menu all of Categoty")
+
   const handleMenuSelect = (category) => {
     setSelectedCategory(category);
     console.log("selected category", category)

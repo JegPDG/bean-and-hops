@@ -19,7 +19,7 @@ const MenuItemDetail = () => {
   const getMenuItemDetail = async() => {
     const res = await api.get(`item-detail/?mnu_name=${itemname}`)
     console.log( "Menu Item Detail",res.data)
-    return res.data
+    return res.data.results
   }
 
   const handleReviewSubmitted = () => {
@@ -52,7 +52,8 @@ const MenuItemDetail = () => {
     )
   }
 
-  console.log(menuItem[0].mnu_id)
+  console.log("Menu Item Detail")
+  // console.log(menuItem[0].mnu_id)
 
   // console.log(category)
   return (

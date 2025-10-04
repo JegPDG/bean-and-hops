@@ -20,7 +20,7 @@ const Home = () => {
 
   const getPosts = async() => {
     const res = await api.get('post/')
-    return res.data
+    return res.data.results
   }
 
   const {data: postItem, isLoading, error} = useQuery({
@@ -30,7 +30,7 @@ const Home = () => {
     
   })
 
-  console.log(postItem)
+  console.log("PostItem",postItem)
 
   const post = [
     {

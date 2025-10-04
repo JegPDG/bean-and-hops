@@ -8,6 +8,7 @@ const MenuItemsAll = () => {
   const [menuItemName, setMenuItemName] = useState(null);
   const navigate = useNavigate();
   
+  
   const handleNameSelect = (name) => {
     setMenuItemName(name)
     // itemName(name)

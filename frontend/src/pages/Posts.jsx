@@ -10,7 +10,7 @@ const Posts = () => {
   const getPostItem = async() => {
     const res = await api.get('post/')
     // console.log(res)
-    return res.data
+    return res.data.results
   }
 
   const {data: postItem, isLoading, error} = useQuery({
