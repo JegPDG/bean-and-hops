@@ -28,15 +28,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
 
-    'cloudinary_storage', # ← ADD THIS (must be BEFORE django.contrib.staticfiles)
     'django.contrib.staticfiles',
 
+    'cloudinary_storage', # ← ADD THIS (must be BEFORE django.contrib.staticfiles)
+    'cloudinary',          
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
     "smart_selects",
     'django_filters',
-    'cloudinary',          
 
     'beanandhops',
     'library',

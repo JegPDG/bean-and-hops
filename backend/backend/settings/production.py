@@ -81,3 +81,6 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Cloudinary URLs (automatic)
 MEDIA_URL = '/media/'  # Cloudinary handles the actual URL
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = '/static/'
