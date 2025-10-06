@@ -36,6 +36,8 @@ DATABASES = {
 
 # Static files - WhiteNoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = '/static/'
 
 # Media files - Use cloud storage in production (AWS S3, Cloudinary, etc.)
 # For now, use local storage (not recommended for production long-term)
@@ -80,7 +82,4 @@ LOGGING = {
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Cloudinary URLs (automatic)
-MEDIA_URL = '/media/'  # Cloudinary handles the actual URL
-
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATIC_URL = '/static/'
+# MEDIA_URL = '/media/'  # Cloudinary handles the actual URL
