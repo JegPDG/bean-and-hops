@@ -37,7 +37,6 @@ DATABASES = {
 }
 
 
-
 # Static files - WhiteNoise
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
@@ -93,30 +92,32 @@ STORAGES = {
     },
 }
 
+# Media files - Use cloud storage in production (AWS S3, Cloudinary, etc.)
+MEDIA_URL = '/media/'
 
 # Cloudinary URLs (automatic)
-# MEDIA_URL = '/media/'  # Cloudinary handles the actual URL
-from django.core.files.storage import default_storage
+# # MEDIA_URL = '/media/'  # Cloudinary handles the actual URL
+# from django.core.files.storage import default_storage
 
-from django.core.files.storage import storages
-print(">>> ACTIVE DEFAULT STORAGE:", storages["default"].__class__)
+# from django.core.files.storage import storages
+# print(">>> ACTIVE DEFAULT STORAGE:", storages["default"].__class__)
 
-print("=" * 60)
-print("✅ Using Production Settings")
-print(f"Database URL: {os.environ.get('DATABASE_URL')}")
-print(f"Cloudinary Cloud Name: {os.environ.get('CLOUDINARY_CLOUD_NAME')}")
-print("=" * 60)
+# print("=" * 60)
+# print("✅ Using Production Settings")
+# print(f"Database URL: {os.environ.get('DATABASE_URL')}")
+# print(f"Cloudinary Cloud Name: {os.environ.get('CLOUDINARY_CLOUD_NAME')}")
+# print("=" * 60)
 
-print("=" * 60)
-print("🌥️  CLOUDINARY DEBUG INFO")
-print("CLOUDINARY_CLOUD_NAME:", os.environ.get("CLOUDINARY_CLOUD_NAME"))
-print("CLOUDINARY_API_KEY:", os.environ.get("CLOUDINARY_API_KEY"))
-print("Storage backend:", type(default_storage))
-print("Storage class:", default_storage.__class__.__module__, default_storage.__class__.__name__)
-print("=" * 60)
+# print("=" * 60)
+# print("🌥️  CLOUDINARY DEBUG INFO")
+# print("CLOUDINARY_CLOUD_NAME:", os.environ.get("CLOUDINARY_CLOUD_NAME"))
+# print("CLOUDINARY_API_KEY:", os.environ.get("CLOUDINARY_API_KEY"))
+# print("Storage backend:", type(default_storage))
+# print("Storage class:", default_storage.__class__.__module__, default_storage.__class__.__name__)
+# print("=" * 60)
 
-print("=" * 60)
-print(f"STORAGES config:\n{STORAGES}")
-print("Default storage type:", type(default_storage))
-print("Default storage class:", default_storage.__class__.__module__, default_storage.__class__.__name__)
-print("=" * 60)
+# print("=" * 60)
+# print(f"STORAGES config:\n{STORAGES}")
+# print("Default storage type:", type(default_storage))
+# print("Default storage class:", default_storage.__class__.__module__, default_storage.__class__.__name__)
+# print("=" * 60)
