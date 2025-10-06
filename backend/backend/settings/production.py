@@ -1,7 +1,6 @@
 # backend/settings/production.py
 from .base import *
 import dj_database_url
-from django.core.files.storage import default_storage
 
 print("=" * 60)
 print("✅ Using Production Settings")
@@ -102,6 +101,8 @@ LOGGING = {
 
 # Cloudinary URLs (automatic)
 # MEDIA_URL = '/media/'  # Cloudinary handles the actual URL
+from django.core.files.storage import default_storage
+
 
 print("=" * 60)
 print("🌥️  CLOUDINARY DEBUG INFO")
