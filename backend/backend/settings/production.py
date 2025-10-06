@@ -1,37 +1,20 @@
 # backend/settings/production.py
 from .base import *
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
 import dj_database_url
 from django.core.files.storage import default_storage
-from django.conf import settings
-from django.core.files.storage import storages
-import cloudinary
 
-print("=" * 60)
-print("PRINT AT THE START OF PRODUCTION.PY")
-print("CLOUDINARY DEBUG INFO")
-print("CLOUDINARY_CLOUD_NAME:", os.environ.get("CLOUDINARY_CLOUD_NAME"))
-print("CLOUDINARY_API_KEY:", os.environ.get("CLOUDINARY_API_KEY"))
-print("CLOUDINARY_API_SECRET:", os.environ.get("CLOUDINARY_API_SECRET"))
 
-print("Cloudinary config:", cloudinary.config().cloud_name)
-
-print("=" * 60)
-
-print(f"Storage backend: {type(default_storage)}")
-print(f"Storage class: {default_storage.__class__.__module__}.{default_storage.__class__.__name__}")
-print("=" * 60)
-
-print("=" * 60)
-print("AFTER setting DEFAULT_FILE_STORAGE")
-print("settings.DEFAULT_FILE_STORAGE:", settings.DEFAULT_FILE_STORAGE)
-print("storages.backends:", storages.backends.keys())
-print("default_storage:", type(default_storage))
-print("=" * 60)
 
 DEBUG = False
+
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # Get from environment variable
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
@@ -69,19 +52,8 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
 
 # Media files - Use cloud storage in production (AWS S3, Cloudinary, etc.)
-# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+MEDIA_URL = '/media/'
 
-# MEDIA_URL = '/media/'
-
-STORAGES = {
-    "default": {
-        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
-# MEDIA_URL = None
 # For now, use local storage (not recommended for production long-term)
 
 # Email backend for production
@@ -121,17 +93,14 @@ LOGGING = {
     },
 }
 
-# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-# print("DEFAULT_FILE_STORAGE from production.py:", DEFAULT_FILE_STORAGE)
-
-MEDIA_URL = '/media/'
-
 
 # Cloudinary URLs (automatic)
 # MEDIA_URL = '/media/'  # Cloudinary handles the actual URL
 
 print("=" * 60)
-print("PRINT AT THE END")
-print(f"Storage backend: {type(default_storage)}")
-print(f"Storage class: {default_storage.__class__.__module__}.{default_storage.__class__.__name__}")
+print("🌥️  CLOUDINARY DEBUG INFO")
+print("CLOUDINARY_CLOUD_NAME:", os.environ.get("CLOUDINARY_CLOUD_NAME"))
+print("CLOUDINARY_API_KEY:", os.environ.get("CLOUDINARY_API_KEY"))
+print("Storage backend:", type(default_storage))
+print("Storage class:", default_storage.__class__.__module__, default_storage.__class__.__name__)
 print("=" * 60)
