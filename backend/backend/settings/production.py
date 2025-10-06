@@ -1,7 +1,12 @@
 # backend/settings/production.py
 from .base import *
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 import dj_database_url
 from django.core.files.storage import default_storage
+from django.conf import settings
+from django.core.files.storage import storages
 import cloudinary
 
 print("=" * 60)
@@ -17,6 +22,13 @@ print("=" * 60)
 
 print(f"Storage backend: {type(default_storage)}")
 print(f"Storage class: {default_storage.__class__.__module__}.{default_storage.__class__.__name__}")
+print("=" * 60)
+
+print("=" * 60)
+print("AFTER setting DEFAULT_FILE_STORAGE")
+print("settings.DEFAULT_FILE_STORAGE:", settings.DEFAULT_FILE_STORAGE)
+print("storages.backends:", storages.backends.keys())
+print("default_storage:", type(default_storage))
 print("=" * 60)
 
 DEBUG = False
@@ -109,8 +121,8 @@ LOGGING = {
     },
 }
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-print("DEFAULT_FILE_STORAGE from production.py:", DEFAULT_FILE_STORAGE)
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# print("DEFAULT_FILE_STORAGE from production.py:", DEFAULT_FILE_STORAGE)
 
 MEDIA_URL = '/media/'
 
