@@ -2,11 +2,6 @@
 from .base import *
 import dj_database_url
 
-print("=" * 60)
-print("✅ Using Production Settings")
-print(f"Database URL: {os.environ.get('DATABASE_URL')}")
-print(f"Cloudinary Cloud Name: {os.environ.get('CLOUDINARY_CLOUD_NAME')}")
-print("=" * 60)
 
 DEBUG = False
 
@@ -42,13 +37,11 @@ DATABASES = {
 }
 
 STORAGES = {
-    # Static files — WhiteNoise
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-    # Media files — Cloudinary
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
 
@@ -103,6 +96,14 @@ LOGGING = {
 # MEDIA_URL = '/media/'  # Cloudinary handles the actual URL
 from django.core.files.storage import default_storage
 
+from django.core.files.storage import storages
+print(">>> ACTIVE DEFAULT STORAGE:", storages["default"].__class__)
+
+print("=" * 60)
+print("✅ Using Production Settings")
+print(f"Database URL: {os.environ.get('DATABASE_URL')}")
+print(f"Cloudinary Cloud Name: {os.environ.get('CLOUDINARY_CLOUD_NAME')}")
+print("=" * 60)
 
 print("=" * 60)
 print("🌥️  CLOUDINARY DEBUG INFO")
