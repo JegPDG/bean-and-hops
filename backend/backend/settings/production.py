@@ -4,6 +4,7 @@ import dj_database_url
 from django.core.files.storage import default_storage
 
 print("=" * 60)
+print("PRINT AT THE START OF PRODUCTION.PY")
 print(f"Storage backend: {type(default_storage)}")
 print(f"Storage class: {default_storage.__class__.__module__}.{default_storage.__class__.__name__}")
 print("=" * 60)
@@ -41,7 +42,7 @@ DATABASES = {
 }
 
 # Static files - WhiteNoise
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
 
@@ -49,6 +50,15 @@ STATIC_URL = '/static/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 MEDIA_URL = '/media/'
+
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 # MEDIA_URL = None
 # For now, use local storage (not recommended for production long-term)
 
@@ -93,3 +103,9 @@ LOGGING = {
 
 # Cloudinary URLs (automatic)
 # MEDIA_URL = '/media/'  # Cloudinary handles the actual URL
+
+print("=" * 60)
+print("PRINT AT THE END")
+print(f"Storage backend: {type(default_storage)}")
+print(f"Storage class: {default_storage.__class__.__module__}.{default_storage.__class__.__name__}")
+print("=" * 60)
