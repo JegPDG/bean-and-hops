@@ -48,7 +48,8 @@ STATIC_URL = '/static/'
 # Media files - Use cloud storage in production (AWS S3, Cloudinary, etc.)
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-MEDIA_URL = None
+MEDIA_URL = '/media/'
+# MEDIA_URL = None
 # For now, use local storage (not recommended for production long-term)
 
 # Email backend for production
