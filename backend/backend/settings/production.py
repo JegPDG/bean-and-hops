@@ -2,9 +2,19 @@
 from .base import *
 import dj_database_url
 from django.core.files.storage import default_storage
+import cloudinary
 
 print("=" * 60)
 print("PRINT AT THE START OF PRODUCTION.PY")
+print("CLOUDINARY DEBUG INFO")
+print("CLOUDINARY_CLOUD_NAME:", os.environ.get("CLOUDINARY_CLOUD_NAME"))
+print("CLOUDINARY_API_KEY:", os.environ.get("CLOUDINARY_API_KEY"))
+print("CLOUDINARY_API_SECRET:", os.environ.get("CLOUDINARY_API_SECRET"))
+
+print("Cloudinary config:", cloudinary.config().cloud_name)
+
+print("=" * 60)
+
 print(f"Storage backend: {type(default_storage)}")
 print(f"Storage class: {default_storage.__class__.__module__}.{default_storage.__class__.__name__}")
 print("=" * 60)
