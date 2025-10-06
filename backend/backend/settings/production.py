@@ -3,7 +3,6 @@ from .base import *
 import dj_database_url
 from django.core.files.storage import default_storage
 import cloudinary
-from django.conf import settings
 
 print("=" * 60)
 print("PRINT AT THE START OF PRODUCTION.PY")
@@ -111,7 +110,7 @@ LOGGING = {
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-print("DEFAULT_FILE_STORAGE from production.py:", settings.DEFAULT_FILE_STORAGE)
+print("DEFAULT_FILE_STORAGE from production.py:", DEFAULT_FILE_STORAGE)
 
 MEDIA_URL = '/media/'
 
