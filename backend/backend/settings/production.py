@@ -1,6 +1,12 @@
 # backend/settings/production.py
 from .base import *
 import dj_database_url
+from django.core.files.storage import default_storage
+
+print("=" * 60)
+print(f"Storage backend: {type(default_storage)}")
+print(f"Storage class: {default_storage.__class__.__module__}.{default_storage.__class__.__name__}")
+print("=" * 60)
 
 DEBUG = False
 
@@ -40,6 +46,9 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
 
 # Media files - Use cloud storage in production (AWS S3, Cloudinary, etc.)
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+MEDIA_URL = None
 # For now, use local storage (not recommended for production long-term)
 
 # Email backend for production
@@ -79,7 +88,7 @@ LOGGING = {
     },
 }
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 # Cloudinary URLs (automatic)
 # MEDIA_URL = '/media/'  # Cloudinary handles the actual URL
