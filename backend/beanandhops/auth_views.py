@@ -58,7 +58,7 @@ def google_auth(request):
             }
         )
 
-        # ✅ Create or update UserProfile with picture
+        # Create or update UserProfile with picture
         from .models import UserProfile
         profile, _ = UserProfile.objects.get_or_create(user=user)
         profile.picture_url = picture

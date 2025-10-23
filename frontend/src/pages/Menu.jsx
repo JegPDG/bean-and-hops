@@ -17,7 +17,6 @@ const Menu = () => {
   const getCategory = async(categ) => {
     const res = await api.get(`menuitem/grouped-category/${categ}/`)
     const data = res.data;
-    // console.log(data)
     return data
   }
 
@@ -30,17 +29,14 @@ const Menu = () => {
     enabled: !!selectedCategory,
   })
 
-  console.log("Menu all of Categoty")
 
   const handleMenuSelect = (category) => {
     setSelectedCategory(category);
-    console.log("selected category", category)
   }
 
 
   const handleSubtypeSelect = (subtype) => {
     setSelectedSubtype(subtype)
-    console.log("selected subtype ", subtype)
     const el = document.getElementById(subtype);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });

@@ -11,8 +11,6 @@ const MenuItemsAll = () => {
   
   const handleNameSelect = (name) => {
     setMenuItemName(name)
-    // itemName(name)
-    console.log(name)
   }
 
   return (

@@ -30,34 +30,6 @@ const Home = () => {
     
   })
 
-  console.log("PostItem",postItem)
-
-  const post = [
-    {
-      type: "image",
-      src: assets.sample_1,
-      title: "Dark Chocolate hazelnut Cookie",
-      caption: "𝙁𝙧𝙤𝙢 𝘽𝙚𝙖𝙣 𝙩𝙤 𝘽𝙧𝙚𝙬 𝙞𝙣 10 𝙨𝙚𝙘𝙤𝙣𝙙𝙨  | Watch the magic unfold as Bean and Hops takes you from roasting fresh coffee beans to pouring the perfect cup."
-    },
-     {
-      type: "image",
-      src: assets.sample_2,
-      title: "Pizza Dos Ala King Burger",
-      caption: "Rich Hawaiian pizza sourced from the Hawii Archipelago in the UNited States of America"
-    },
-     {
-      type: "image",
-      src: assets.sample_3,
-      title: "Ceremonial Matcha",
-      caption: "Leaves personally hervested from the mountains of Fuji, High quality matcha leaves"
-    },
-    {
-      type: "video",
-      src: assets.sample_3,
-      title: "Ceremonial Matcha",
-      caption: "Leaves personally hervested from the mountains of Fuji, High quality matcha leaves"
-    },
-  ]
 
   const places = [
     {img: assets.place_1},

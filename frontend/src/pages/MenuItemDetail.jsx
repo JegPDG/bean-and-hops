@@ -14,17 +14,15 @@ const MenuItemDetail = () => {
   const [addReview, setAddReview] = useState(null);
   const {user} = useAuth();
   const queryClient = useQueryClient();
-  // console.log(itemName)
 
   const getMenuItemDetail = async() => {
     const res = await api.get(`item-detail/?mnu_name=${itemname}`)
-    console.log( "Menu Item Detail",res.data)
     return res.data.results
   }
 
   const handleReviewSubmitted = () => {
-    setAddReview(false); // Optionally close the form
-    queryClient.invalidateQueries(['menuDetail']); // This will refetch the menu item detail
+    setAddReview(false); 
+    queryClient.invalidateQueries(['menuDetail']); 
   };
 
   const {data: menuItem, isLoading, error} = useQuery({
@@ -52,10 +50,7 @@ const MenuItemDetail = () => {
     )
   }
 
-  console.log("Menu Item Detail")
-  // console.log(menuItem[0].mnu_id)
 
-  // console.log(category)
   return (
     <div className='pb-16 mt-12 md:mt-4  p-4'>
       <div>

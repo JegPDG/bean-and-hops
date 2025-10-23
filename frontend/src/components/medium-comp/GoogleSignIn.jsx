@@ -6,7 +6,7 @@ const GoogleSignIn = () => {
   const googleButtonRef = useRef(null);
   const isInitialized = useRef(false);
 
-  // ✅ useEffect is at the component level, not inside a function
+  // useEffect is at the component level, not inside a function
   useEffect(() => {
     // Don't initialize if already authenticated
     if (isAuthenticated) return;
@@ -14,11 +14,11 @@ const GoogleSignIn = () => {
     // Function to check and initialize Google
     const checkAndInitGoogle = () => {
       if (window.google && googleButtonRef.current && !isInitialized.current) {
-        console.log('✅ Google script loaded, initializing...');
+        console.log('Google script loaded, initializing...');
         initializeGoogleSignIn();
         isInitialized.current = true;
       } else if (!window.google) {
-        console.log('⏳ Waiting for Google script to load...');
+        console.log('Waiting for Google script to load...');
       }
     };
 
@@ -40,8 +40,7 @@ const GoogleSignIn = () => {
   // ✅ Initialize Google Sign-In
   const initializeGoogleSignIn = () => {
     try {
-      console.log('🔧 Initializing Google Sign-In...');
-      console.log('Client ID:', import.meta.env.VITE_GOOGLE_CLIENT_ID);
+      console.log('Initializing Google Sign-In...');
 
       window.google.accounts.id.initialize({
         client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
@@ -51,7 +50,7 @@ const GoogleSignIn = () => {
 
       // ✅ Render button immediately after initializing
       if (googleButtonRef.current) {
-        console.log('🎨 Rendering Google button...');
+        console.log('Rendering Google button...');
         window.google.accounts.id.renderButton(
           googleButtonRef.current,
           {
@@ -63,25 +62,25 @@ const GoogleSignIn = () => {
             theme: 'filled_black'
           }
         );
-        console.log('✅ Google button rendered!');
+        console.log('Google button rendered!');
       }
     } catch (error) {
-      console.error('❌ Error initializing Google Sign-In:', error);
+      console.error('Error initializing Google Sign-In:', error);
     }
   };
 
   // ✅ Handle Google authentication response
   const handleCredentialResponse = async (response) => {
-    console.log('🔐 Google credential received');
+    console.log('Google credential received');
     const result = await login(response.credential);
     if (!result.success) {
       alert('Authentication failed: ' + result.error);
     } else {
-      console.log('✅ Login successful!');
+      console.log('Login successful!');
     }
   };
 
-  // ✅ Handle logout
+  // Handle logout
   const handleLogout = async () => {
     await logout();
     isInitialized.current = false; // Reset initialization flag
@@ -93,7 +92,7 @@ const GoogleSignIn = () => {
     }, 100);
   };
 
-  // ✅ Show user info if authenticated
+  // Show user info if authenticated
   if (isAuthenticated) {
     return (
       <div className="user-info bg-bg-dark-400 p-4 rounded-lg">
@@ -121,7 +120,7 @@ const GoogleSignIn = () => {
     );
   }
   
-  // ✅ Show Google Sign-In button
+  // Show Google Sign-In button
   return (
     <div >
       <div ref={googleButtonRef} className="flex justify-center mt-3"></div>

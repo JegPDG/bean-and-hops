@@ -7,7 +7,6 @@ const MenuItem = ({name, image, prices, description, onNameSelect}) => {
   const goToMenuItemDetail = (itemname) => {
     navigate(`/menu/item-detail/${itemname}`)
     window.scrollTo(0, 0);
-    console.log(itemname)
   }
 
   return (

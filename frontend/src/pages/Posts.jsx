@@ -9,7 +9,6 @@ const Posts = () => {
 
   const getPostItem = async() => {
     const res = await api.get('post/')
-    // console.log(res)
     return res.data.results
   }
 
@@ -19,7 +18,6 @@ const Posts = () => {
     keepPreviousData: true
   })
 
-  console.log(postItem)
 
   const postitem = [
     {image: assets.americano, caption:"Espresso is a concentrated coffee beverage, popular in Italy and worldwide, made by forcing hot, pressurized water through finely ground coffee beans to extract intense flavor and aroma."},
